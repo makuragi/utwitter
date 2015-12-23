@@ -86,8 +86,6 @@ function entity_str($str) {
 }
 
 
-
-
 	/**
 	  * 入力チェック
 	  * @param unknown $name
