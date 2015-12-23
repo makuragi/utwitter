@@ -2,6 +2,7 @@
 
 // 関数ファイル読み込み
 require_once '../include/common/function.php';
+require_once '../include/model/user_model.php';
 
 // セッションを開始
 session_start();
@@ -21,11 +22,11 @@ if (!isPost()) {
     if (!isOverText($_SESSION['user_name']), 20) {
         $errors[] = '文字数は'$maxlen'文字以内にしてください';
     if ()
-  */      
-        
+  */
+
 //  if (!isUsedID($_SESSION['user_name'])) {
   //  $errors[] = '既に存在するIDです';
-        
+
     $_SESSION['user_name']     = getPost('user_name');
     // 存在チェック
 /*    if (!isExist($_SESSION['user_name'])) {
@@ -39,17 +40,24 @@ if (!isPost()) {
 	$_SESSION['user_age']      = getPost('user_age');
 	$_SESSION['user_gender']   = getPost('user_gender');
 	$_SESSION['user_profile']  = getPost('user_profile');
+	$_SESSION['user_profile_photo'] = '';
+	$_SESSION['user_profile_background'] = '';
+
 	// todo 画像アップロッド処理
 
-    
+
 	include_once '../include/view/user_create_confirm.php';
+} else if (getPost('action_id') === 'user_create_result') {
+	$user = new user_model();
+	$user->userCreate();
+	include_once '../include/view/user_create_result.php';
 }
 if (count($errors) !== 0) {
 	foreach ($errors as $error) {
 		print $error;
 	}
 }
-    
-    
+
+
     // todo 未入力項目のチェック
     //hush化

@@ -12,5 +12,10 @@
 性別：<?php echo $_SESSION['user_gender']; ?><br>
 プロフィール：<?php echo $_SESSION['user_profile']; ?><br>
 
+<form action="./user_controller.php" method="post">
+<input type="hidden" name="action_id" value="user_create_result">
+<input type="submit" value="登録する">
+</form>
+
 </body>
 </html>
