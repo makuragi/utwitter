@@ -8,6 +8,7 @@
     <h1>ユーザ登録</h1>
 	<form action="./user_controller.php" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="action_id" value="user_create_confirm">
+		ユーザID：<input type="text" name="user_id"><br>
 		ユーザ名：<input type="text" name="user_name" value=
 		"<?php if (isSessionExist('user_name')) {
 			echo $_SESSION['user_name'];
