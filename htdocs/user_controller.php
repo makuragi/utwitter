@@ -20,7 +20,7 @@ if (!isPost()) {
     if (!isExist($_SESSION['user_id'])) {
         $errors[] = 'ユーザIDを入力してください';
     }elseif (!isOverText($_SESSION['user_id'], 10)) {
-        $errors[] = 'IDは' . $maxlen . '文字以内で入力してください';
+        $errors[] = 'IDは10文字以内で入力してください';
     }else if (!isOnlyAbc($_SESSION['user_id'])) {
         $errors[] = 'IDは半角英数字で入力してください';
     }
@@ -31,13 +31,13 @@ if (!isPost()) {
     if (!isExist($_SESSION['user_name'])) {
         $errors[] = 'ユーザネームを入力してください';
     }else if (!isOverText($_SESSION['user_name'], 10) || !isOnlyAbc($_SESSION['user_name'])) {
-           $errors[] = '文字数は' . $maxlen . '文字以内の半角英数字で入力してください';
+           $errors[] = '文字数は10文字以内の半角英数字で入力してください';
     }
 
     $_SESSION['user_email']    = getPost('user_email');
     if (!isExist($_SESSION['user_email'])) {
        $errors[] = 'emailアドレスを入力してください';
-    }elseif (!isCorrect-email($_SESSION['user_email'])) {
+    } elseif (!isCorrectEmail($_SESSION['user_email'])) {
         $errors[] = '正しいアドレスを入力してください';
     }
 
@@ -45,13 +45,13 @@ if (!isPost()) {
     if (!isExist($_SESSION['user_password'])) {
         $errors[] = 'パスワードを入力してください';
     }else if (!isOverText($_SESSION['user_password'], 20) || !isOnlyAbc($_SESSION['user_password'])) {
-        $errors[] = 'パスワードは' . $maxlen . '文字以内の半角英数字で入力してください';
+        $errors[] = 'パスワードは20文字以内の半角英数字で入力してください';
     }
 
     //    $_SESSION['user_password_confirm'] = getPost('user_password_confirm')
-    if($_SESSION['user_password_confirm'] !== $_SESSION['user_password']){
-    	$errors[] = '確認用パスワードが一致しません';
-    }
+//     if($_SESSION['user_password_confirm'] !== $_SESSION['user_password']){
+//     	$errors[] = '確認用パスワードが一致しません';
+//     }
 
     $_SESSION['user_age']      = getPost('user_age');
     if (!isExist($_SESSION['user_age'])) {
@@ -69,15 +69,17 @@ if (!isPost()) {
     if (!isExist($_SESSION['user_profile'])) {
         $errors[] = 'プロフィールを入力してください';
     } else if (!isOverText($_SESSION['user_profile'], 200)) {
-        $errors[] = '文字数は' . $maxlen . '文字以内にしてください';
+        $errors[] = '文字数は200文字以内にしてください';
     }
-
-
 
 	// todo 画像アップロッド処理
 
 
-	include_once '../include/view/user_create_confirm.php';
+    // 入力エラーがなかった場合、確認画面へ遷移
+	if (count($errors) === 0) {
+		include_once '../include/view/user_create_confirm.php';
+	}
+
 } else if (getPost('action_id') === 'user_create_result') {
 	$user = new user_model();
 	$user->userCreate();

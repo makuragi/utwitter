@@ -96,7 +96,7 @@ function entity_str($str) {
 	  */
 
     function isExist($name) {
-        if (srtlen($name) > 0) return true;
+        if (strlen($name) > 0) return true;
     }
 
     /**
@@ -107,7 +107,7 @@ function entity_str($str) {
      */
 
     function isOvertext($name, $maxlen) {
-        if (srtlen($name) <= $maxlen) return true;
+        if (strlen($name) <= $maxlen) return true;
     }
 
     /**
@@ -118,7 +118,7 @@ function entity_str($str) {
      */
 
     function istext($name, $minlen) {
-        if (srtlen($name) >= $minlen)
+        if (strlen($name) >= $minlen)
             return true;
     }
 
@@ -129,7 +129,7 @@ function entity_str($str) {
      */
 
     function isOnlyAbc($name){
-        if (!preg_match("/^[a-zA-Z0-9]+$", $name)) return true;
+        if (preg_match("/^[a-zA-Z0-9]+$/", $name)) return true;
     }
 
     /**
@@ -139,7 +139,7 @@ function entity_str($str) {
      */
 
     function isOnlyNumber($name){
-        if (!preg_match("/^[0-9]+$", $name)) return true;
+        if (preg_match("/^[0-9]+$/", $name)) return true;
     }
 
     /**
@@ -148,7 +148,7 @@ function entity_str($str) {
      * @return boolean
      */
     function isOnlyKana($name){
-        if(!preg_match("/^[ぁ-んァ-ヶー一-龠]+$-u", $name)) return true;
+        if(preg_match("/^[ぁ-んァ-ヶー一-龠]+$-u/", $name)) return true;
     }
 
     /**
@@ -157,8 +157,8 @@ function entity_str($str) {
      * @return boolean
      */
 
-    function isCorrect_email($name) {
-    	if(!preg_match("/[0-9a-z!#\$%\&'\*\+\/\=\?\^\|\-\{\}\.] +@ [0-9a-z!#\$%\&'\*\+\/\=\?\^\|\-\{\}\.]+/" , $name)) return true;
+    function isCorrectEmail($name) {
+    	if(preg_match("/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/" , $name)) return true;
     }
 
 
