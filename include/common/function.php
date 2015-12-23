@@ -12,6 +12,12 @@ function isPost() {
 	}
 }
 
+
+/**
+ * セッションの値が存在するか判定する
+ * @param unknown $name
+ * @return boolean
+ */
 function isSessionExist($name) {
 	if (isset($_SESSION[$name])) return true;
 	return false;

@@ -15,64 +15,64 @@ if (!isPost()) {
 } else if (getPost('action_id') === 'user_create_confirm') {
 	// todo 入力チェック
 
-    
+
     $_SESSION['user_id']     = getPost('user_id');
     if (!isExist($_SESSION['user_id'])) {
         $errors[] = 'ユーザIDを入力してください';
-    }elseif (!isOverText($_SESSION['user_id']), 10) {
-        $errors[] = 'IDは'$maxlen'文字以内で入力してください';
-    }else (!isOnlyabc($_SESSION['user_id'])) {
+    }elseif (!isOverText($_SESSION['user_id'], 10)) {
+        $errors[] = 'IDは' . $maxlen . '文字以内で入力してください';
+    }else if (!isOnlyAbc($_SESSION['user_id'])) {
         $errors[] = 'IDは半角英数字で入力してください';
     }
     //  if (!isUsedID($_SESSION['user_name'])) {
     //  $errors[] = '既に存在するIDです';
-    
+
     $_SESSION['user_name']     = getPost('user_name');
     if (!isExist($_SESSION['user_name'])) {
         $errors[] = 'ユーザネームを入力してください';
-    }else (!isOverText($_SESSION['user_name']), 10 || (!isOnlyAbc($_SESSION['user_name'])) {
-           $errors[] = '文字数は'$maxlen'文字以内の半角英数字で入力してください';
-           }
-           
-           $_SESSION['user_email']    = getPost('user_email');
-           if (!isExist($_SESSION['user_email'])) {
-           $errors[] = 'emailアドレスを入力してください';
-           }elseif (!isCorrect-email($_SESSION['user_email'])) {
-           $errors[] = '正しいアドレスを入力してください';
-           }
-           
-           $_SESSION['user_password'] = getPost('user_password');
-           if (!isExist($_SESSION['user_password'])) {
-           $errors[] = 'パスワードを入力してください';
-           }else (!isOverText($_SESSION['user_password']), 20 || (!isOnlyAbc($_SESSION['user_password'])) {
-                  $errors[] = 'パスワードは'$maxlen'文字以内の半角英数字で入力してください';
-                  }
-                  
-                  //    $_SESSION['user_password_confirm'] = getPost('user_password_confirm')
-                  if($_SESSION['user_password_confirm'] !== $_SESSION['user_password']){
-                  $errors[] = '確認用パスワードが一致しません';
-                  }
-                  
-                  $_SESSION['user_age']      = getPost('user_age');
-                  if (!isExist($_SESSION['user_age'])) {
-                  $errors[] = '年齢を入力してください';
-                  }else (!isOverText($_SESSION['user_age']), 3)||(!isOnlyNumber($_SESSION['user_age'])) {
-                  $errors[] = '正しい年齢を入力してください';
-                  }
-                  
-                  $_SESSION['user_gender']   = getPost('user_gender');
-                  if (!isExist($_SESSION['user_gender'])) {
-                  $errors[] = '性別を選択してください';
-                  }
-                  
-                  $_SESSION['user_profile']  = getPost('user_profile');
-                  if (!isExist($_SESSION['user_profile'])) {
-                  $errors[] = 'プロフィールを入力してください';
-                  }else(!isOverText($_SESSION['user_profile']), 200) {
-                  $errors[] = '文字数は'$maxlen'文字以内にしてください';
-                  }
-    
-    
+    }else if (!isOverText($_SESSION['user_name'], 10) || !isOnlyAbc($_SESSION['user_name'])) {
+           $errors[] = '文字数は' . $maxlen . '文字以内の半角英数字で入力してください';
+    }
+
+    $_SESSION['user_email']    = getPost('user_email');
+    if (!isExist($_SESSION['user_email'])) {
+       $errors[] = 'emailアドレスを入力してください';
+    }elseif (!isCorrect-email($_SESSION['user_email'])) {
+        $errors[] = '正しいアドレスを入力してください';
+    }
+
+    $_SESSION['user_password'] = getPost('user_password');
+    if (!isExist($_SESSION['user_password'])) {
+        $errors[] = 'パスワードを入力してください';
+    }else if (!isOverText($_SESSION['user_password'], 20) || !isOnlyAbc($_SESSION['user_password'])) {
+        $errors[] = 'パスワードは' . $maxlen . '文字以内の半角英数字で入力してください';
+    }
+
+    //    $_SESSION['user_password_confirm'] = getPost('user_password_confirm')
+    if($_SESSION['user_password_confirm'] !== $_SESSION['user_password']){
+    	$errors[] = '確認用パスワードが一致しません';
+    }
+
+    $_SESSION['user_age']      = getPost('user_age');
+    if (!isExist($_SESSION['user_age'])) {
+        $errors[] = '年齢を入力してください';
+    } else if (!isOverText($_SESSION['user_age'], 3) || !isOnlyNumber($_SESSION['user_age'])) {
+        $errors[] = '正しい年齢を入力してください';
+    }
+
+    $_SESSION['user_gender']   = getPost('user_gender');
+    if (!isExist($_SESSION['user_gender'])) {
+        $errors[] = '性別を選択してください';
+    }
+
+    $_SESSION['user_profile']  = getPost('user_profile');
+    if (!isExist($_SESSION['user_profile'])) {
+        $errors[] = 'プロフィールを入力してください';
+    } else if (!isOverText($_SESSION['user_profile'], 200)) {
+        $errors[] = '文字数は' . $maxlen . '文字以内にしてください';
+    }
+
+
 
 	// todo 画像アップロッド処理
 
