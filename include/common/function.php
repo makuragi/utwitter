@@ -78,3 +78,40 @@ function close_db_connect($db) {
 function entity_str($str) {
 	return htmlspecialchars($str, ENT_QUOTES, HTML_CHARACTER_SET);
 }
+
+
+
+    
+/**
+  * 入力チェック
+  * @param unknown $name
+  * @param string $default
+  * @return unknown|string
+  */
+    
+    function isExist($name) {
+        if (srtlen($name) > 0) return true;
+    }
+    function isOvertext($name, $maxlen) {
+        if (srtlen($name) <= $maxlen) return true;
+    }
+    function istext($name, $minlen) {
+        if (srtlen($name) >= $minlen)
+            return true;
+    }
+    function isOnlyAbc($name){
+        if (!preg_match("/^[a-zA-Z0-9]+$", $name)) return true;
+    }
+    function isOnlyNumber($name){
+        if (!preg_match("/^[0-9]+$", $name)) return true;
+    }
+    mb_regex_encoding("UTF-8");
+    function isOnlyKana($name){
+        if(!preg_match("/^[ぁ-んァ-ヶー一-龠]+$", $name)) return true;
+    }
+    function isCorrect-email($name);
+    if(!preg_match("/[0-9a-z!#\$%\&'\*\+\/\=\?\^\|\-\{\}\.] +@ [0-9a-z!#\$%\&'\*\+\/\=\?\^\|\-\{\}\.]+/" , $name)) return true;
+    }
+    
+
+
