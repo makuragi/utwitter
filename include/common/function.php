@@ -81,37 +81,79 @@ function entity_str($str) {
 
 
 
-    
-/**
-  * 入力チェック
-  * @param unknown $name
-  * @param string $default
-  * @return unknown|string
-  */
-    
+
+	/**
+	  * 入力チェック
+	  * @param unknown $name
+	  * @param string $default
+	  * @return unknown|string
+	  */
+
     function isExist($name) {
         if (srtlen($name) > 0) return true;
     }
+
+    /**
+     *
+     * @param unknown $name
+     * @param unknown $maxlen
+     * @return boolean
+     */
+
     function isOvertext($name, $maxlen) {
         if (srtlen($name) <= $maxlen) return true;
     }
+
+    /**
+     *
+     * @param unknown $name
+     * @param unknown $minlen
+     * @return boolean
+     */
+
     function istext($name, $minlen) {
         if (srtlen($name) >= $minlen)
             return true;
     }
+
+    /**
+     *
+     * @param unknown $name
+     * @return boolean
+     */
+
     function isOnlyAbc($name){
         if (!preg_match("/^[a-zA-Z0-9]+$", $name)) return true;
     }
+
+    /**
+     *
+     * @param unknown $name
+     * @return boolean
+     */
+
     function isOnlyNumber($name){
         if (!preg_match("/^[0-9]+$", $name)) return true;
     }
-    mb_regex_encoding("UTF-8");
+
+    /**
+     *
+     * @param unknown $name
+     * @return boolean
+     */
     function isOnlyKana($name){
-        if(!preg_match("/^[ぁ-んァ-ヶー一-龠]+$", $name)) return true;
+        if(!preg_match("/^[ぁ-んァ-ヶー一-龠]+$-u", $name)) return true;
     }
-    function isCorrect-email($name);
-    if(!preg_match("/[0-9a-z!#\$%\&'\*\+\/\=\?\^\|\-\{\}\.] +@ [0-9a-z!#\$%\&'\*\+\/\=\?\^\|\-\{\}\.]+/" , $name)) return true;
+
+    /**
+     *
+     * @param unknown $name
+     * @return boolean
+     */
+
+    function isCorrect_email($name) {
+    	if(!preg_match("/[0-9a-z!#\$%\&'\*\+\/\=\?\^\|\-\{\}\.] +@ [0-9a-z!#\$%\&'\*\+\/\=\?\^\|\-\{\}\.]+/" , $name)) return true;
     }
-    
+
 
 
