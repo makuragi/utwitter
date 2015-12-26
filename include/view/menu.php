@@ -6,5 +6,6 @@
 </head>
 <body>
 <a href="./user_controller.php">ユーザ登録</a>
+<a href="./login_controller.php">ログイン</a>
 </body>
 </html>
