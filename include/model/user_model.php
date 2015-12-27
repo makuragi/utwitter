@@ -1,8 +1,6 @@
 <?php
 
-
 class user_model {
-
 
 	public function userCreate() {
 		try {
@@ -34,10 +32,10 @@ class user_model {
 
 			$prepare->execute();
 
-			close_db_connect($db);
+// 			close_db_connect($db);
 
 		} catch (PDOException $e) {
-			echo 'エラー' . $e->getMessage();
+			echo 'エラー' . entity_str($e->getMessage());
 		}
 
 

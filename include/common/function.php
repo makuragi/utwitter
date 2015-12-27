@@ -71,9 +71,27 @@ function get_db_connect() {
  * DBとのコネクション切断
  * @param obj $db DBハンドル
  */
-function close_db_connect($db) {
-	// 接続を閉じる
-	$db = null;
+// function close_db_connect($db) {
+// 	// 接続を閉じる
+// 	$db = null;
+// }
+
+/**
+ * ランダム文字列生成 (英数字)
+ * $length: 生成する文字数
+ */
+function makeRandStr($length = 8) {
+	static $chars;
+	if (!$chars) {
+		$chars = array_flip(array_merge(
+				range('a', 'z'), range('A', 'Z'), range('0', '9')
+		));
+	}
+	$str = '';
+	for ($i = 0; $i < $length; ++$i) {
+		$str .= array_rand($chars);
+	}
+	return $str;
 }
 
 /**
@@ -82,7 +100,7 @@ function close_db_connect($db) {
  * @return str 変換後文字
  */
 function entity_str($str) {
-	return htmlspecialchars($str, ENT_QUOTES, HTML_CHARACTER_SET);
+	return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
 }
 
 
@@ -159,5 +177,83 @@ function entity_str($str) {
     	if(preg_match("/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/" , $name)) return true;
     }
 
+/**
+ * php.iniのpost_max_sizeを超えたデータが送信されていないかチェック
+ * @return boolean
+ */
+function checkPostMaxSize() {
+	$max_size = ini_get('post_max_size');
+	// post_max_sizeが8Mのように設定されていた場合に整数にする
+	$multiple = 1;
+	$unit = substr($max_size, -1);
+	if ($unit == 'M') {
+		$multiple = 1024 * 1024;
+	} else if ($unit == 'K') {
+		$multiple = 1024;
+	} else if ($unit == 'G') {
+		$multiple = 1024 * 1024 * 1024;
+	}
+	$max_size = substr($max_size, 0, strlen($max_size) - 1) * $multiple;
 
+	// post_max_sizeを超えたデータがPOSTされたかどうかチェック
+	if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_SERVER['CONTENT_LENGTH'] > $max_size) {
+		return false;
+	} else {
+		return true;
+	}
+}
 
+/**
+ * 画像アップロードファイルをチェックする
+ * @param unknown $i
+ * @return multitype:boolean string multitype:string
+ */
+function checkFile($i) {
+	$error_msg = array();
+	$ext = '';
+
+	$size = $_FILES['user_profile_photo']['size'][$i];
+	$error = $_FILES['user_profile_photo']['error'][$i];
+	$img_type = $_FILES['user_profile_photo']['type'][$i];
+	$tmp_name = $_FILES['user_profile_photo']['tmp_name'][$i];
+
+	if ($error != UPLOAD_ERR_OK) {
+		if ($error == UPLOAD_ERR_NO_FILE) {
+			// アップロードされなかった場合はエラー処理を行わない
+		} else if ($error == UPLOAD_ERR_INI_SIZE || $error == UPLOAD_ERR_FORM_SIZE) {
+			$error_msg[] = 'ファイルサイズは100kb以下にしてください';
+		} else {
+			$error_msg[] = 'アップロードエラーです';
+		}
+		return array(false, $ext, $error_msg);
+	} else {
+		if ($img_type == 'image/gif') {
+			$ext = '.gif';
+		} else if ($img_type == 'image/jpeg' || $img_type == 'image/pjpeg') {
+			$ext = '.jpg';
+		} else if ($img_type == 'image/png' || $img_type == 'image/x-png') {
+			$ext = '.png';
+		}
+
+		// 画像ファイルのMIMEタイプを判定します
+		$finfo = new finfo(FILEINFO_MIME_TYPE);
+		$finfoType = $finfo->file($tmp_name);
+
+		// 画像ファイルのサイズ下限をチェックします
+		if ($size == 0) {
+			$error_msg[] = 'ファイルが存在しないか空のファイルです';
+			// 画像ファイルのサイズ上限をチェックします
+		} else if ($size > FILE_MAX_SIZE) {
+			$error_msg[] = 'ファイルサイズは100kb以下にしてください';
+		// 送信されたMIMEタイプと、画像ファイルのMIMEタイプが一致するかを確認します
+		} else if ($img_type != $finfoType) {
+			$error_msg[] = 'MIMEタイプが一致しません';
+		// 画像ファイルの拡張子をチェックします
+		} else if ($ext != '.gif' && $ext != '.jpg' && $ext != '.png') {
+			$error_msg[] = 'アップロード可能なファイルはgif, jpg, pngのみです';
+		} else {
+			return array(true, $ext, $error_msg);
+		}
+	}
+	return array(false, $ext, $error_msg);
+}

@@ -48,8 +48,8 @@
 			echo $_SESSION['user_profile'];
 		}
 		?></textarea><br>
-		プロフィール画像：<input type="file" name="user_profile_phpto"><br>
-		背景画像：<input type="file" name="user_profile_background"><br>
+		プロフィール画像：<input type="file" name="user_profile_photo[]"><br>
+		背景画像：<input type="file" name="user_profile_photo[]"><br>
 		<a href="index.php">戻る</a>
 		<input type="submit" value="登録確認画面へ">
 	</form>

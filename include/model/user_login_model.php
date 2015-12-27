@@ -37,7 +37,7 @@ class user_login_model {
 			}
 
 		} catch (PDOException $e) {
-			echo 'エラー' . $e->getMessage();
+			echo 'エラー' . entity_str($e->getMessage());
 		}
 	}
 }

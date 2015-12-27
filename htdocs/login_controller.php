@@ -21,8 +21,8 @@ if (!isPost()) {
 
 	// ユーザIDとパスワードの組み合わせでチェック
 
-	$login_id   = getPost('login_id');
-	$login_pass = getPost('login_pass');
+	$login_id   = entity_str(getPost('login_id'));
+	$login_pass = entity_str(getPost('login_pass'));
 
 	//  todo ユーザID入力チェック
 	if (!isExist($login_id)) {
