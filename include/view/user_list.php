@@ -1,6 +1,7 @@
-<div id="userList" class="left">
-	<h3>ユーザ一覧</h3>
-
+	<div id="userList">
+	<div class="userlist_title">
+		<h3>ユーザ一覧</h3>
+	</div>
 	<?php foreach($user_list as $user) { ?>
 		<div class="user">
 			<form action="./main_controller.php" method="post">
@@ -18,4 +19,5 @@
 			</form>
 		</div>
 	<?php } ?>
+	</div>
 </div>

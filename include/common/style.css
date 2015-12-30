@@ -1,8 +1,158 @@
 @CHARSET "UTF-8";
+/* --共通設定-- */
 
-#my_profile {
+html{
+	font-size: 100%;
+}
+
+.container{
+	width: 980px;
+	padding: 0 15px;
+	margin: 0 auto;
+}
+
+a:link { color:#0000ff; text-decoration:none }
+a:visited { color:#0000ff; text-decoration:none }
+a:hover { color:#000000; text-decoration:underline }
+a:active { color:#0000ff; text-decoration:none }
+
+/*
+.contain {
+    display: inline-block;
+    background-color: #ccc;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin: 5px;
+    width: 200px;
+    height: 200px;
+    border: 1px solid #ccc;
+    background-size: contain;
+}
+
+.cover {
+    display: inline-block;
+    background-color: #ccc;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin: 5px;
+    width: 200px;
+    height: 200px;
+    border: 1px solid #ccc;
+    background-size: cover;
+}
+*/
+
+
+/* --ヘッダー-- */
+
+
+header{
+	position: relative;
+	width: 100%;
+	height: 100px;
+}
+
+.home_btn{
 	float:left;
-	width:240px;
+}
+.logout_btn{
+	float:right;
+}
+
+
+
+/* --左カラム-- */
+.left_container{
+	width: 20%;
+	float: left;
+	text-align: center;
+}
+
+
+/*#my_profile {
+	width: 20%;
+}*/
+
+.my_profile{
+	width: 100%;
+	height: 140px;
+	
+}
+.my_profile_image{
+	width: 30%;
+	float: left;
+}
+.my_profile_image img{
+	width: 100%;	
+}
+.my_profile_user{
+	text-align: center;
+	list-style-type:none;
+}
+.my_profile_user a:link{
+	color: red;
+}
+.my_profile_user a:hover{
+	color: red;
+}
+.my_profile_user a:visited{
+	color: red;
+}
+.my_profile_user_name{
+	font-size: 1.5rem;	
+}
+.my_profile_user_id{
+	font-size: 0.8rem;
+	opacity: 0.5;
+}
+
+
+.my_profile_num{
+	width: 100%;
+	list-style-type: none;
+	text-align:left;
+	margin: 0 auto;
+	padding: 0;
+}
+.my_profile_info li{
+	display: inline-block;
+	margin: 0 auto;
+	padding: 0;
+}
+.my_profile_info p{
+	font-size: 0.3rem;
+}
+
+.my_profile:after {
+    content: "";
+    clear: both;
+    height: 0;
+    display: block;
+    visibility: hidden;
+}
+
+#userList {
+	width: 100%;
+	text-align:center;
+}
+.user_list_title{
+	width: 100%;
+	margin: 0 auto;
+}
+
+.user_profile_image{
+	width: 30%;
+}
+
+.user {
+	border:solid 1px;
+}
+
+/* --右カラム-- */
+.right_container{
+	width: 80%;
+	float: left;
+	text-align: center;
 }
 
 #my_timeline {
@@ -16,12 +166,6 @@
 	text-align:center;
 }
 
-#userList {
-	width: 450px;
-	text-align:center;
-	margin-left: 50px;
-}
-
 #all_timeline {
 	width: 400px;
 	text-align:center;
@@ -31,9 +175,7 @@
 .my_post {
 	width:450px;
 }
-.user {
-	border:solid 1px;
-}
+
 .left {
 	float:left;
 }
