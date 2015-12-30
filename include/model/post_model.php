@@ -27,7 +27,9 @@ class post_model {
 			$prepare->bindValue(':post_body', $post_body, PDO::PARAM_STR);
 			$prepare->bindValue(':post_date', $post_date, PDO::PARAM_STR);
 
-			$prepare->execute();
+			if (!$prepare->execute()) {
+				$errors[] = 'DB登録処理に失敗しました';
+			}
 
 		} catch (PDOException $e) {
 			$errors[] = entity_str($e->getMessage());
