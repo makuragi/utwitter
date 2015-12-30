@@ -1,3 +1,6 @@
+
+
+
 <?php
 
 // 関数ファイル読み込み
@@ -50,6 +53,19 @@ if (is_array($my_followers)) {
 		}
 	}
 }
+
+// フォロー数一覧を取得
+$my_follow_num = count($my_follow_list);
+
+// フォロワー数一覧を取得
+$my_follower_num_array = $main->getMyFollowerNum($login_id);
+$my_follower_num = $my_follower_num_array['count'];
+
+// 鬱イート数一覧を取得
+$my_utweet_num = count($main->getMyTimeLine($login_id));
+
+
+
 // ユーザ一覧を取得。将来的にはリコメンドユーザにしたい。
 if (count($main->getUserList($login_id)) === 0) {
 	$msg[] = 'ユーザ一覧データがありません';
@@ -108,19 +124,26 @@ if (isExist($_SERVER['QUERY_STRING'])) {
 	$my_time_line = $main->getMyTimeLine($user_profile_id);
 	include_once '../include/view/my_profile.php';
 } else {
-	// 投稿画面
-	include_once '../include/view/post.php';
-	// タイムライン
-	include_once '../include/view/time_line.php';
+	
+	// ユーザ一覧画面
+	include_once '../include/view/user_top.php';
 	// ユーザ一覧画面
 	include_once '../include/view/user_list.php';
+	
+	// 投稿画面
+	include_once '../include/view/post.php';
+	// エラー表示
+	include_once '../include/common/errors.php';
+	// 鬱バードエリア
+
+	// タイムライン
+	include_once '../include/view/time_line.php';
+	// メッセージ表示
+	include_once '../include/common/msg.php';
+	
 }
 
-// エラー表示
-include_once '../include/common/errors.php';
 
-// メッセージ表示
-include_once '../include/common/msg.php';
 
 
 // フッター読み込み

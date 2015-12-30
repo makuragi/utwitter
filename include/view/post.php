@@ -1,9 +1,5 @@
-
-<p>ようこそ<a href="./main_controller.php?<?php echo $login_id; ?>"><?php echo $login_user_info['user_name']; ?></a>さん</p>
-<div class="left">
-	<img src = "<?php echo $login_user_info['user_profile_photo']; ?>">
-</div>
-<div id = "post" class="left">
+<div class="right_container">
+	<div id = "post">
 	<h3>さあ、うつなことをつぶやきましょう</h3>
 	<form action="./main_controller.php" method="post">
 		<input type="hidden" name="action_id" value="post_create">
@@ -17,4 +13,4 @@
 		<textarea name="post_body" rows="4" cols="35"></textarea>
 		<input type="submit" value="うついーと">
 	</form>
-</div>
+	</div>

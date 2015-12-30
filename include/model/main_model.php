@@ -64,6 +64,37 @@ class main_model {
 			$errors[] = entity_str($e->getMessage());
 		}
 	}
+	/**
+	 * フォロワー数を取得する
+	 * @param unknown $user_profile_id
+	 * @return unknown
+	 */
+	public function getMyFollowerNum ($user_profile_id) {
+		try {
+			// DBコネクトオブジェクト取得
+			$db = get_db_connect();
+	
+			// SQL文を作成
+			$sql = 'SELECT count(*) as count FROM follow_table
+			WHERE follower_user_id = :user_profile_id AND follow_delete_flag = 0 ';
+	
+			$prepare= $db->prepare($sql);
+	
+			// SQL文のプレースホルダーに値をバインドする
+			$prepare->bindValue(':user_profile_id',$user_profile_id , PDO::PARAM_STR);
+	
+			$prepare->execute();
+	
+			// 結果セットを取得
+			$result = $prepare->fetch(PDO::FETCH_ASSOC);
+	
+			return $result;
+	
+		} catch (PDOException $e) {
+			$errors[] = entity_str($e->getMessage());
+		}
+	}
+	
 	public function getAllTimeLine ($login_id, $my_follow_list) {
 		try {
 
