@@ -12,8 +12,15 @@
 <!-- todo: user_genderの表示を0→男、1→女に変える -->
 性別：<?php echo $_SESSION['user_gender']; ?><br>
 プロフィール：<?php echo $_SESSION['user_profile']; ?><br>
+
+<?php if (isset($_SESSION['user_profile_photo'])) { ?>
 プロフィール画像:<img src="<?php echo $_SESSION['user_profile_photo']; ?>"><br>
+<?php } ?>
+
+<?php if (isset($_SESSION['user_profile_background'])) { ?>
 背景画像:<img src="<?php echo $_SESSION['user_profile_background']; ?>"><br>
+<?php } ?>
+
 
 <a href="./user_controller.php">戻る</a>
 <form action="./user_controller.php" method="post">

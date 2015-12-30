@@ -3,14 +3,12 @@
 // 関数ファイル読み込み
 require_once '../include/common/function.php';
 
-session_start();
+// ログイン情報を読み込み
+include_once '../include/common/start_session.php';
 
-// ログインしている場合、メインページに遷移
-if (isSessionExist('login_id')) {
-	header('HTTP/1.1 303 See Other');
-	header('Location: http://localhost/utwitter/htdocs/main_controller.php');
-	exit();
-} else {
+// ログイン済みの場合→メインページへ
+include_once '../include/common/goto_main.php';
+
 	// セッション変数を破棄
 	if (isSessionExist('user_id'))                unset($_SESSION['user_id']);
 	if (isSessionExist('user_name'))              unset($_SESSION['user_name']);
@@ -23,5 +21,3 @@ if (isSessionExist('login_id')) {
 	if (isSessionExist('user_profile_backgroud')) unset($_SESSION['user_profile_backgroud']);
 
 	include_once '../include/view/menu.php';
-
-}

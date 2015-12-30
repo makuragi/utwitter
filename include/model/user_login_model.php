@@ -16,21 +16,20 @@ class user_login_model {
 			$db = get_db_connect();
 
 			// SQL文を作成
-			$sql = 'SELECT COUNT(*) as count FROM user_table
-			WHERE user_id = :login_id AND user_password = :login_pass';
+			$sql = 'SELECT user_id, user_password FROM user_table
+			WHERE user_id = :login_id';
 
 			$prepare = $db->prepare($sql);
 
 			// SQL文のプレースホルダーに値をバインドする
 			$prepare->bindValue(':login_id',$login_id , PDO::PARAM_STR);
-			$prepare->bindValue(':login_pass',$login_pass , PDO::PARAM_STR);
 
 			$prepare->execute();
 
 			// 結果セットを取得(引数には戻り値の型を入力)
 			$result = $prepare->fetch(PDO::FETCH_ASSOC);
 
-			if (intval($result['count']) > 0) {
+			if (count($result) > 0 && crypt($login_pass, $result['user_password']) === $result['user_password']) {
 				return true;
 			} else {
 				return false;

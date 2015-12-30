@@ -4,8 +4,11 @@
 require_once '../include/common/function.php';
 require_once '../include/model/user_model.php';
 
-// セッションを開始
-session_start();
+// ログイン情報を読み込み
+include_once '../include/common/start_session.php';
+
+// ログイン済みの場合→メインページへ
+include_once '../include/common/goto_main.php';
 
 //アップロードした画像を配置するtmpパス
 $dir_tmp = '../include/img/tmp/';
@@ -23,7 +26,8 @@ if (!isPost()) {
 
 	include_once '../include/view/user_create.php';
 } else if (getPost('action_id') === 'user_create_confirm') {
-	// todo 入力チェック
+
+    //入力チェック
 
     $_SESSION['user_id']     = entity_str(getPost('user_id'));
     if (!isExist($_SESSION['user_id'])) {
@@ -160,5 +164,3 @@ if (count($errors) !== 0) {
 		print $error. '<br>';
 	}
 }
-
-    // todo: パスワードhush化

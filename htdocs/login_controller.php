@@ -5,7 +5,11 @@ require_once '../include/common/function.php';
 
 require_once '../include/model/user_login_model.php';
 
-session_start();
+// ログイン情報を読み込み
+include_once '../include/common/start_session.php';
+
+// ログイン済みの場合→メインページへ
+include_once '../include/common/goto_main.php';
 
 $login_id   = '';
 $login_pass = '';
@@ -38,8 +42,9 @@ if (!isPost()) {
 	if (count($errors) === 0) {
 		$login = new user_login_model();
 		if ($login->loginCheck($login_id, $login_pass)) {
-			// todo セッションにログインIDを登録
+			// ログインIDを記録
 			$_SESSION['login_id'] = $login_id;
+			setcookie('login_id', $login_id, time() + (60 * 60 * 24 * 30));
 
 			header('HTTP/1.1 303 See Other');
 			header('Location: http://localhost/utwitter/htdocs/main_controller.php');
@@ -55,8 +60,4 @@ if (!isPost()) {
 			print $error. '<br>';
 		}
 	}
-} else if (getPost('action_id') === 'logout') {
-	unset($_SESSION['login_id']);
-	header('HTTP/1.1 303 See Other');
-	header('Location: http://localhost/utwitter/htdocs/index.php');
 }

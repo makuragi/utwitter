@@ -12,8 +12,7 @@ function isPost() {
 	}
 }
 
-
-/**
+/** todo 削除対象
  * セッションの値が存在するか判定する
  * @param unknown $name
  * @return boolean
@@ -51,7 +50,7 @@ function getPost($name, $default = null) {
 	return $default;
 }
 
-/**
+/** todo: 名称をキャメルケースに変更
  * DBハンドルを取得
  * @return obj $db DBハンドル
  */
@@ -66,15 +65,6 @@ function get_db_connect() {
 
 	return $db;
 }
-
-/**
- * DBとのコネクション切断
- * @param obj $db DBハンドル
- */
-// function close_db_connect($db) {
-// 	// 接続を閉じる
-// 	$db = null;
-// }
 
 /**
  * ランダム文字列生成 (英数字)
@@ -94,7 +84,7 @@ function makeRandStr($length = 8) {
 	return $str;
 }
 
-/**
+/** todo: 名称をキャメルケースに変更
  * 特殊文字をHTMLエンティティに変換する
  * @param str  $str 変換前文字
  * @return str 変換後文字
@@ -104,27 +94,27 @@ function entity_str($str) {
 }
 
 
-	/**
-	  * 入力チェック
-	  * @param unknown $name
-	  * @param string $default
-	  * @return unknown|string
-	  */
+/**
+* 入力チェック
+* @param unknown $name
+* @param string $default
+* @return unknown|string
+*/
 
-    function isExist($name) {
-        if (strlen($name) > 0) return true;
-    }
+function isExist($name) {
+    if (strlen($name) > 0)  return true;
+}
 
-    /**
-     *
-     * @param unknown $name
-     * @param unknown $maxlen
-     * @return boolean
-     */
+/**
+*
+* @param unknown $name
+* @param unknown $maxlen
+* @return boolean
+*/
 
-    function isOvertext($name, $maxlen) {
-        if (strlen($name) <= $maxlen) return true;
-    }
+function isOvertext($name, $maxlen) {
+	if (strlen($name) <= $maxlen) return true;
+}
 
     /**
      *

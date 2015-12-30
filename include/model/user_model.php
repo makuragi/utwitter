@@ -22,7 +22,8 @@ class user_model {
 			$prepare->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_STR);
 			$prepare->bindValue(':user_name', $_SESSION['user_name'], PDO::PARAM_STR);
 			$prepare->bindValue(':user_email', $_SESSION['user_email'], PDO::PARAM_STR);
-			$prepare->bindValue(':user_password', $_SESSION['user_password'], PDO::PARAM_STR);
+			// パスワードをハッシュ化
+			$prepare->bindValue(':user_password', crypt($_SESSION['user_password']), PDO::PARAM_STR);
 			$prepare->bindValue(':user_age', $_SESSION['user_age'], PDO::PARAM_STR);
 			$prepare->bindValue(':user_gender', $_SESSION['user_gender'], PDO::PARAM_STR);
 			$prepare->bindValue(':user_profile', $_SESSION['user_profile'], PDO::PARAM_STR);
@@ -32,14 +33,8 @@ class user_model {
 
 			$prepare->execute();
 
-// 			close_db_connect($db);
-
 		} catch (PDOException $e) {
 			echo 'エラー' . entity_str($e->getMessage());
 		}
-
-
 	}
-
-
 }
