@@ -18,6 +18,9 @@ $dir_src = '../include/img/src/';
 // エラー保持用配列
 $errors = array();
 
+// ユーザインスタンス作成
+$user = new user_model();
+
 if (!isPost()) {
 
 	// 画像のセッションを破棄
@@ -36,24 +39,24 @@ if (!isPost()) {
         $errors[] = 'IDは20文字以内で入力してください';
     } else if (!isOnlyAbc($_SESSION['user_id'])) {
         $errors[] = 'IDは半角英数字で入力してください';
+    } else if ($user->isUserExist($_SESSION['user_id'])) {
+    	$errors[] = '入力したIDはすでに存在します';
     }
-    // todo ユーザIDに重複がないかチェック
-    //  if (!isUsedID($_SESSION['user_name'])) {
-    //  $errors[] = '既に存在するIDです';
 
     $_SESSION['user_name']     = entity_str(getPost('user_name'));
     if (!isExist($_SESSION['user_name'])) {
         $errors[] = 'ユーザネームを入力してください';
-    // todo ユーザネームは半角英数字じゃなくてもよいのでは、仕様確認
-    } else if (!isOverText($_SESSION['user_name'], 20) || !isOnlyAbc($_SESSION['user_name'])) {
-           $errors[] = '文字数は20文字以内の半角英数字で入力してください';
+    } else if (!isOverText($_SESSION['user_name'], 20)) {
+           $errors[] = '文字数は20文字以内で入力してください';
     }
 
     $_SESSION['user_email']    = entity_str(getPost('user_email'));
     if (!isExist($_SESSION['user_email'])) {
        $errors[] = 'emailアドレスを入力してください';
-    } elseif (!isCorrectEmail($_SESSION['user_email'])) {
+    } else if (!isCorrectEmail($_SESSION['user_email'])) {
         $errors[] = '正しいアドレスを入力してください';
+    } else if($user->isEmailExist($_SESSION['user_email'])) {
+    	$errors[] = '入力したアドレスはすでに存在します';
     }
 
     $_SESSION['user_password'] = entity_str(getPost('user_password'));
@@ -63,10 +66,10 @@ if (!isPost()) {
         $errors[] = 'パスワードは20文字以内の半角英数字で入力してください';
     }
 
-//    $_SESSION['user_password_confirm'] = getPost('user_password_confirm')
-//     if($_SESSION['user_password_confirm'] !== $_SESSION['user_password']){
-//     	$errors[] = '確認用パスワードが一致しません';
-//     }
+   $user_password_confirm = getPost('user_password_confirm');
+    if ($user_password_confirm !== $_SESSION['user_password']){
+		$errors[] = '確認用パスワードが一致しません';
+    }
 
     $_SESSION['user_age']      = entity_str(getPost('user_age'));
     if (!isExist($_SESSION['user_age'])) {
@@ -153,7 +156,6 @@ if (!isPost()) {
 	}
 
 	if (count($errors) === 0) {
-		$user = new user_model();
 		$user->userCreate();
 		include_once '../include/view/user_create_result.php';
 	}

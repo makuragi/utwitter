@@ -28,6 +28,7 @@
 			echo $_SESSION['user_password'];
 		}
 		?>"><br>
+		パスワード(確認)：<input type="password" name="user_password_confirm"><br>
 		年齢：<input type="text" name="user_age" value=
 		"<?php if (isSessionExist('user_age')) {
 			echo $_SESSION['user_age'];
