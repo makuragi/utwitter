@@ -158,6 +158,7 @@ if (!isPost()) {
 		include_once '../include/view/user_create_result.php';
 	}
 }
+
 // todo: エラー表示はviewファイルの中で表示できるようにしたい
 if (count($errors) !== 0) {
 	foreach ($errors as $error) {
