@@ -22,6 +22,9 @@ include_once '../include/common/logout.php';
 //エラー保持用配列
 $errors = array();
 
+// メッセージ配列
+$msg = array();
+
 // modelオブジェクト作成
 $main = new main_model();
 $post = new post_model();
@@ -49,14 +52,14 @@ if (is_array($my_followers)) {
 }
 // ユーザ一覧を取得。将来的にはリコメンドユーザにしたい。
 if (count($main->getUserList($login_id)) === 0) {
-	$errors[] = 'ユーザ一覧データがありません';
+	$msg[] = 'ユーザ一覧データがありません';
 } else {
 	$user_list = $main->getUserList($login_id);
 }
 
 // タイムラインを取得します
 if (count($main->getAllTimeLine($login_id, $my_follow_list)) === 0) {
-	$errors[] = 'つぶやきがありません';
+	$msg[] = 'つぶやきがありません';
 } else {
 	$all_time_line = $main->getAllTimeLine($login_id, $my_follow_list);
 }
@@ -115,6 +118,10 @@ if (isExist($_SERVER['QUERY_STRING'])) {
 
 // エラー表示
 include_once '../include/common/errors.php';
+
+// メッセージ表示
+include_once '../include/common/msg.php';
+
 
 // フッター読み込み
 include_once '../include/common/hina_footer.php';

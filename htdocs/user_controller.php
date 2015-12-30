@@ -32,8 +32,8 @@ if (!isPost()) {
     $_SESSION['user_id']     = entity_str(getPost('user_id'));
     if (!isExist($_SESSION['user_id'])) {
         $errors[] = 'ユーザIDを入力してください';
-    } else if (!isOverText($_SESSION['user_id'], 10)) {
-        $errors[] = 'IDは10文字以内で入力してください';
+    } else if (!isOverText($_SESSION['user_id'], 20)) {
+        $errors[] = 'IDは20文字以内で入力してください';
     } else if (!isOnlyAbc($_SESSION['user_id'])) {
         $errors[] = 'IDは半角英数字で入力してください';
     }
@@ -45,8 +45,8 @@ if (!isPost()) {
     if (!isExist($_SESSION['user_name'])) {
         $errors[] = 'ユーザネームを入力してください';
     // todo ユーザネームは半角英数字じゃなくてもよいのでは、仕様確認
-    } else if (!isOverText($_SESSION['user_name'], 10) || !isOnlyAbc($_SESSION['user_name'])) {
-           $errors[] = '文字数は10文字以内の半角英数字で入力してください';
+    } else if (!isOverText($_SESSION['user_name'], 20) || !isOnlyAbc($_SESSION['user_name'])) {
+           $errors[] = '文字数は20文字以内の半角英数字で入力してください';
     }
 
     $_SESSION['user_email']    = entity_str(getPost('user_email'));
