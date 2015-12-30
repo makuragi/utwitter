@@ -11,7 +11,9 @@
 }
 
 #post {
-	width: 300px;
+	width: 700px;
+	margin-left:50px;
+	text-align:center;
 }
 
 #userList {
@@ -34,4 +36,7 @@
 }
 .left {
 	float:left;
+}
+.clear {
+	clear:both;
 }

@@ -1,5 +1,8 @@
 
-<p>ようこそ<a href="./main_controller.php?<?php echo $login_id; ?>"><?php echo $login_id; ?></a>さん</p>
+<p>ようこそ<a href="./main_controller.php?<?php echo $login_id; ?>"><?php echo $login_user_info['user_name']; ?></a>さん</p>
+<div class="left">
+	<img src = "<?php echo $login_user_info['user_profile_photo']; ?>">
+</div>
 <div id = "post" class="left">
 	<h3>さあ、うつなことをつぶやきましょう</h3>
 	<form action="./main_controller.php" method="post">

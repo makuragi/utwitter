@@ -29,9 +29,14 @@ $post = new post_model();
 $login_id  = $_SESSION['login_id'];
 $color_id  = '';
 $post_body = '';
+$login_user_info = array();
 $user_list = array();
 $my_follow_list = array();
 $all_time_line = array();
+
+// ユーザ情報を取得する
+
+$login_user_info = $main->getMyProfile($login_id);
 
 // フォロー一覧を取得
 $my_followers = $main->myFollowUser($login_id);
@@ -78,6 +83,7 @@ if (isPost()) {
 
 		if (count($errors) === 0) {
 			$post->postCreate($login_id, $color_id, $post_body);
+			include_once '../include/common/goto_main.php';
 		}
 	// フォロー処理
 	} else if (getPost('action_id') === 'follow') {
