@@ -1,7 +1,5 @@
 <?php
 
-echo '登録が完了しました';
-
 // ユーザIDをログイン情報としてsessionに保存
 $_SESSION['login_id'] = $_SESSION['user_id'];
 
