@@ -47,7 +47,7 @@ if (!isPost()) {
 			setcookie('login_id', $login_id, time() + (60 * 60 * 24 * 30));
 
 			header('HTTP/1.1 303 See Other');
-			header('Location: http://localhost/utwitter/htdocs/main_controller.php');
+			header('Location: http://localhost//utwitter/htdocs/main_controller.php');
 			exit();
 		} else {
 			// todo ログイン画面へ。エラーメッセージも表示する。

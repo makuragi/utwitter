@@ -16,5 +16,5 @@ if (isSessionExist('user_profile_backgroud')) unset($_SESSION['user_profile_back
 
 // todo sessionに値を保存、main_controller.phpに遷移
 header('HTTP/1.1 303 See Other');
-header('Location: http://localhost/utwitter/htdocs/main_controller.php');
+header('Location: http://localhost//utwitter/htdocs/main_controller.php');
 exit();

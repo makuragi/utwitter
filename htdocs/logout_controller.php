@@ -10,5 +10,5 @@ if(isPost() && getPost('action_id') === 'logout') {
 	unset($_SESSION['login_id']);
 	setcookie('login_id', '', time() -3600);
 	header('HTTP/1.1 303 See Other');
-	header('Location: http://localhost/utwitter/htdocs/login_controller.php');
+	header('Location: http://localhost//utwitter/htdocs/login_controller.php');
 }
