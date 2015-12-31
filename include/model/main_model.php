@@ -73,28 +73,28 @@ class main_model {
 		try {
 			// DBコネクトオブジェクト取得
 			$db = get_db_connect();
-	
+
 			// SQL文を作成
 			$sql = 'SELECT count(*) as count FROM follow_table
 			WHERE follower_user_id = :user_profile_id AND follow_delete_flag = 0 ';
-	
+
 			$prepare= $db->prepare($sql);
-	
+
 			// SQL文のプレースホルダーに値をバインドする
 			$prepare->bindValue(':user_profile_id',$user_profile_id , PDO::PARAM_STR);
-	
+
 			$prepare->execute();
-	
+
 			// 結果セットを取得
 			$result = $prepare->fetch(PDO::FETCH_ASSOC);
-	
+
 			return $result;
-	
+
 		} catch (PDOException $e) {
 			$errors[] = entity_str($e->getMessage());
 		}
 	}
-	
+
 	public function getAllTimeLine ($login_id, $my_follow_list) {
 		try {
 
@@ -188,7 +188,7 @@ class main_model {
 	}
 
 	/**
-	 * フォロワー一覧を取得する
+	 * フォロー一覧を取得する
 	 * @param unknown $login_id
 	 * @return multitype:
 	 */
@@ -198,8 +198,44 @@ class main_model {
 			$db = get_db_connect();
 
 			// SQL文を作成
-			$sql = 'SELECT follower_user_id FROM follow_table WHERE follow_user_id = :login_id
-			AND follow_delete_flag = 0';
+			$sql = 'SELECT follow.follower_user_id,user.user_id, user.user_name, user.user_profile,
+			user.user_profile_photo, user.user_profile_background FROM follow_table as follow
+			INNER JOIN user_table as user ON follow.follower_user_id = user.user_id
+			WHERE follow.follow_user_id = :login_id AND follow.follow_delete_flag = 0
+			AND user.user_delete_flag = 0';
+
+			$prepare= $db->prepare($sql);
+
+			// SQL文のプレースホルダーに値をバインドする
+			$prepare->bindValue(':login_id',$login_id , PDO::PARAM_STR);
+
+			$prepare->execute();
+
+			$result = $prepare->fetchAll(PDO::FETCH_ASSOC);
+
+			return $result;
+
+		} catch (PDOException $e) {
+			$errors[] = entity_str($e->getMessage());
+		}
+	}
+
+	/**
+	 * フォロワー一覧を取得する
+	 * @param unknown $login_id
+	 * @return multitype:
+	 */
+	public function myFollowerUser ($login_id) {
+		try {
+			// DBコネクトオブジェクト取得
+			$db = get_db_connect();
+
+			// SQL文を作成
+			$sql = 'SELECT follow.follow_user_id,user.user_id, user.user_name, user.user_profile,
+			user.user_profile_photo, user.user_profile_background FROM follow_table as follow
+			INNER JOIN user_table as user ON follow.follow_user_id = user.user_id
+			WHERE follow.follower_user_id = :login_id AND follow.follow_delete_flag = 0
+			AND user.user_delete_flag = 0';
 
 			$prepare= $db->prepare($sql);
 

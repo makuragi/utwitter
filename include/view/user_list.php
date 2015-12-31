@@ -6,7 +6,7 @@
 		<div class="user">
 			<form action="./main_controller.php" method="post">
 				<input type="hidden" name="follower_user_id" value="<?php echo $user['user_id']; ?>">
-				<a href="./main_controller.php?<?php echo $user['user_id']; ?>"><?php echo $user['user_id']; ?></a>&nbsp;
+				<a href="./main_controller.php?action_id=profile&user_profile_id=<?php echo $user['user_id']; ?>"><?php echo $user['user_id']; ?></a>&nbsp;
 				<?php echo $user['user_name']?><br>
 				<?php echo $user['user_profile']; ?><br>
 				<?php if (in_array($user['user_id'], $my_follow_list) === false) { ?>

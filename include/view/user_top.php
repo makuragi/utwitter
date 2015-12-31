@@ -12,10 +12,10 @@
 	</div>
 	<div class="my_profile_info">
 		<ul class="my_profile_num">
-			<li><p>うついーと数</p><a href="./main_controller.php?<?php echo $login_id; ?>"><?php echo $my_utweet_num; ?></a></li>
-			<li><p>フォロー数</p><a><?php echo $my_follow_num; ?></a></li>	
-			<li><p>フォロワー数</p><a><?php echo $my_follower_num; ?></a></li>
-		</ul> 
+			<li><p>うついーと数</p><a href="./main_controller.php?action_id=profile&user_profile_id=<?php echo $login_id; ?>"><?php echo $my_utweet_num; ?></a></li>
+			<li><p>フォロー数</p><a href="./main_controller.php?action_id=follow"><?php echo $my_follow_num; ?></a></li>
+			<li><p>フォロワー数</p><a href="./main_controller.php?action_id=follower"><?php echo $my_follower_num; ?></a></li>
+		</ul>
 	</div>
 	</div>
 

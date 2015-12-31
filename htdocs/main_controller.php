@@ -45,21 +45,18 @@ $all_time_line = array();
 $login_user_info = $main->getMyProfile($login_id);
 
 // フォロー一覧を取得
-$my_followers = $main->myFollowUser($login_id);
-if (is_array($my_followers)) {
-	foreach($my_followers as $key => $value) {
-		foreach ($value as $follower) {
-			$my_follow_list[] = $follower;
-		}
+$my_follows = $main->myFollowUser($login_id);
+if (is_array($my_follows)) {
+	foreach($my_follows as $my_follow) {
+		$my_follow_list[] = $my_follow['follower_user_id'];
 	}
 }
-
 // フォロー数一覧を取得
 $my_follow_num = count($my_follow_list);
 
-// フォロワー数一覧を取得
-$my_follower_num_array = $main->getMyFollowerNum($login_id);
-$my_follower_num = $my_follower_num_array['count'];
+// フォロワー一覧を取得
+$my_followers = $main->myFollowerUser($login_id);
+$my_follower_num = count($my_followers);
 
 // 鬱イート数一覧を取得
 $my_utweet_num = count($main->getMyTimeLine($login_id));
@@ -118,18 +115,22 @@ if (isPost()) {
 }
 
 // ユーザ名がクリックされたとき、プロフィールページに遷移する
-if (isExist($_SERVER['QUERY_STRING'])) {
-	$user_profile_id = $_SERVER['QUERY_STRING'];
+if (getGet('action_id') === 'profile') {
+	$user_profile_id = getGet('user_profile_id');
 	$my_profile = $main->getMyProfile($user_profile_id);
 	$my_time_line = $main->getMyTimeLine($user_profile_id);
 	include_once '../include/view/my_profile.php';
+} else if (getGet('action_id') === 'follow') {
+	include_once '../include/view/follow_list.php';
+} else if (getGet('action_id') === 'follower') {
+	include_once '../include/view/follower_list.php';
 } else {
-	
+
 	// ユーザ一覧画面
 	include_once '../include/view/user_top.php';
 	// ユーザ一覧画面
 	include_once '../include/view/user_list.php';
-	
+
 	// 投稿画面
 	include_once '../include/view/post.php';
 	// エラー表示
@@ -140,7 +141,7 @@ if (isExist($_SERVER['QUERY_STRING'])) {
 	include_once '../include/view/time_line.php';
 	// メッセージ表示
 	include_once '../include/common/msg.php';
-	
+
 }
 
 
