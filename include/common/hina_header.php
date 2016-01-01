@@ -8,7 +8,7 @@
 <body>
 <header>
 <div class="container">
+	<div class="top_wrapper">
 	<div class="home_btn">
 	<a href="./index.php">HOME</a><br>
 	</div>
-

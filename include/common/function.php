@@ -12,7 +12,6 @@ function isPost() {
 	}
 }
 
-
 /** todo 削除対象
  * セッションの値が存在するか判定する
  * @param unknown $name
@@ -62,7 +61,7 @@ function get_db_connect() {
 	// プリペアドステートメントのエミュレーションを無効にする
 	$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 	// エラー発生時、例外を投げる
-	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 	return $db;
 }
@@ -103,7 +102,7 @@ function entity_str($str) {
 */
 
 function isExist($name) {
-    if (mb_strlen($name) > 0)  return true;
+    if (strlen($name) > 0)  return true;
 }
 
 /**
@@ -114,7 +113,7 @@ function isExist($name) {
 */
 
 function isOvertext($name, $maxlen) {
-	if (mb_strlen($name) <= $maxlen) return true;
+	if (strlen($name) <= $maxlen) return true;
 }
 
     /**
@@ -125,7 +124,7 @@ function isOvertext($name, $maxlen) {
      */
 
     function istext($name, $minlen) {
-        if (mb_strlen($name) >= $minlen)
+        if (strlen($name) >= $minlen)
             return true;
     }
 
@@ -184,7 +183,7 @@ function checkPostMaxSize() {
 	} else if ($unit == 'G') {
 		$multiple = 1024 * 1024 * 1024;
 	}
-	$max_size = substr($max_size, 0, mb_strlen($max_size) - 1) * $multiple;
+	$max_size = substr($max_size, 0, strlen($max_size) - 1) * $multiple;
 
 	// post_max_sizeを超えたデータがPOSTされたかどうかチェック
 	if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_SERVER['CONTENT_LENGTH'] > $max_size) {

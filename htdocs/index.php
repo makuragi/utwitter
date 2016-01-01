@@ -6,7 +6,6 @@ require_once '../include/common/function.php';
 // ログイン情報を読み込み
 include_once '../include/common/start_session.php';
 
-
 // ログイン済みの場合→メインページへ
 include_once '../include/common/goto_main.php';
 

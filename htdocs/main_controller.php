@@ -3,7 +3,6 @@
 
 <?php
 
-
 // 関数ファイル読み込み
 require_once '../include/common/function.php';
 
@@ -82,6 +81,7 @@ if (isPost()) {
 	if (getPost('action_id') === 'post_create') {
 
 		$color_id  = entity_str(getPost('color_id'));
+		echo $color_id;
 		$post_body = entity_str(getPost('post_body'));
 
 		// 入力チェック
@@ -122,12 +122,24 @@ if (getGet('action_id') === 'profile') {
 	$my_time_line = $main->getMyTimeLine($user_profile_id);
 	include_once '../include/view/my_profile.php';
 } else if (getGet('action_id') === 'follow') {
+// フォローユーザ一覧画面を表示する
+	// ユーザ一プロフィール
+	include_once '../include/view/user_top.php';
+	// ユーザ一覧画面
+	include_once '../include/view/user_list.php';
+	// フォローユーザー覧画面
 	include_once '../include/view/follow_list.php';
 } else if (getGet('action_id') === 'follower') {
+// フォロワーユーザ一覧画面を表示する
+	// ユーザープロフィール
+	include_once '../include/view/user_top.php';
+	// ユーザ一覧画面
+	include_once '../include/view/user_list.php';
+	// フォロワーユーザー覧画面
 	include_once '../include/view/follower_list.php';
 } else {
 
-	// ユーザ一覧画面
+	// ユーザプロフィール
 	include_once '../include/view/user_top.php';
 	// ユーザ一覧画面
 	include_once '../include/view/user_list.php';

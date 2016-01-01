@@ -68,7 +68,7 @@ class user_model {
 			}
 
 		} catch (PDOException $e) {
-			echo entity_str($e->getMessage());
+			echo 'エラー' . entity_str($e->getMessage());
 		}
 	}
 
@@ -108,7 +108,7 @@ class user_model {
 			$prepare->execute();
 
 		} catch (PDOException $e) {
-			echo entity_str($e->getMessage());
+			echo 'エラー' . entity_str($e->getMessage());
 		}
 	}
 }
