@@ -5,6 +5,7 @@ require_once '../include/common/function.php';
 
 require_once '../include/model/user_login_model.php';
 
+
 // ログイン情報を読み込み
 include_once '../include/common/start_session.php';
 
@@ -47,7 +48,7 @@ if (!isPost()) {
 			setcookie('login_id', $login_id, time() + (60 * 60 * 24 * 30));
 
 			header('HTTP/1.1 303 See Other');
-			header('Location: http://localhost/utwitter/htdocs/main_controller.php');
+			header('Location: http://localhost//utwitter/htdocs/main_controller.php');
 			exit();
 		} else {
 			// todo ログイン画面へ。エラーメッセージも表示する。

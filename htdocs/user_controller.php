@@ -4,6 +4,7 @@
 require_once '../include/common/function.php';
 require_once '../include/model/user_model.php';
 
+
 // ログイン情報を読み込み
 include_once '../include/common/start_session.php';
 
@@ -89,6 +90,7 @@ if (!isPost()) {
     } else if (!isOverText($_SESSION['user_profile'], 200)) {
         $errors[] = '文字数は200文字以内にしてください';
     }
+
     // 画像アップロード処理
 
     if (!checkPostMaxSize()) {
@@ -133,7 +135,7 @@ if (!isPost()) {
 
 } else if (getPost('action_id') === 'user_create_result') {
 	// プロフィール画像を移動
-	if (isset($_SESSION['user_profile_photo'])) {
+	if (isset($_SESSION['user_profile_photo']) && isExist($_SESSION['user_profile_photo'])) {
 		$save_prof_to = $dir_src . pathinfo($_SESSION['user_profile_photo'], PATHINFO_BASENAME);
 		if (!rename($_SESSION['user_profile_photo'], $save_prof_to)) {
 			$errors[] = '画像ファイル移動に失敗しました';
@@ -144,7 +146,7 @@ if (!isPost()) {
 		$_SESSION['user_profile_photo'] = '';
 	}
 	// 背景画像を移動
-	if (isset($_SESSION['user_profile_background'])) {
+	if (isset($_SESSION['user_profile_background']) && isExist($_SESSION['user_profile_background'])) {
 		$save_bg_to = $dir_src . pathinfo($_SESSION['user_profile_background'], PATHINFO_BASENAME);
 		if (!rename($_SESSION['user_profile_background'], $save_bg_to)) {
 			$errors[] = '画像ファイル移動に失敗しました';
@@ -155,8 +157,10 @@ if (!isPost()) {
 		$_SESSION['user_profile_background'] = '';
 	}
 
+	$user->userCreate();
+
 	if (count($errors) === 0) {
-		$user->userCreate();
+		// todo: エラーの場合、遷移しないように変更
 		include_once '../include/view/user_create_result.php';
 	}
 }

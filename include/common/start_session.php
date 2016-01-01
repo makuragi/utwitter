@@ -6,3 +6,4 @@ if (!isset($_SESSION['login_id'])) {
 		$_SESSION['login_id'] = $_COOKIE['login_id'];
 	}
 }
+
