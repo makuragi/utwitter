@@ -5,6 +5,7 @@
 	<title>うついったー</title>
 	<link rel="stylesheet" type="text/css" href="../htdocs/css/normalize.css" media="all">
 	<link rel="stylesheet" type="text/css" href="../htdocs/css/style.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../htdocs/css/hover-min.css" media="all">
 </head>
 <body>
 <header>

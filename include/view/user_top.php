@@ -2,7 +2,7 @@
 <div class="main_wrapper">
 <div class="left_container">
 	<div class="my_profile">
-	<div class="my_profile_image">
+	<div class="my_profile_image hvr-glow">
 	<img src= "<?php echo $login_user_info['user_profile_photo']; ?>" >
 	</div>
 	<div class="my_profile_user">

@@ -6,7 +6,7 @@
 		<div class="user_profile">
 			<form action="./main_controller.php" method="post">
 			<div class="user_profile_left">
-				<div class="user_profile_image">
+				<div class="user_profile_image hvr-glow">
 				<img src= "<?php echo $user['user_profile_photo']; ?>" >
 				</div>
 				<div class="button follow_btn">
