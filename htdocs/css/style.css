@@ -312,22 +312,86 @@ header{
 	margin-left:50px;
 	margin: 0 auto;
 }
+#post textarea{
+	width: 250px;
+	height: 50px;
+}
 
 #utu_submit{
-	width: 90px;
-	height: 60px;	
+	width: 60px;
+	height: 40px;
+	margin: 0 auto;	
 }
 
 
 
 
 #all_timeline {
-	width: 400px;
-	text-align: center;
+	width: 80%;
+	text-align: left;
 	margin: 0 auto;
 }
 
-.my_post {
+.utweet_box{
+	clear: both;
+}
+
+#all_timeline > div+div{
+ border-top:1px dashed #999966
+}
+
+utweet_box:after{
+	display:block;
+    clear:both;
+    height:0px;
+    visibility:hidden;
+    content:".";
+}
+.utweet_profile_image{
+	width: 52px;
+	height: 52px;
+	border-radius: 9px;
+	margin: 15px 5px;
+	overflow: hidden;
+	float: left;
+	}
+.utweet_profile_image img{
+	width: 100%;
+	height: auto;		
+}
+.utweet_info{
+	float:left;
+	margin: 0 auto;
+	padding: 5px;
+}
+
+.utweet_user_top{
+	float:left;
+	width: 550px;
+}
+.utweet_user_id{
+	font-size: 1.5rem;
+	float: left;
+}
+.utweet_user_name{
+	font-size: 0.8rem;
+	float: left;
+	color: gray;
+	margin: 8px;
+}
+.utweet{
+	width: 550px;
+	clear: both;
+	font-size: 1.0rem;
+	margin: 0;
+	padding: 0;
+}
+.utweet_date{
+	font-size: 0.8rem;
+	text-align: right;
+}
+
+my_post {
 	width:450px;
 }
 
