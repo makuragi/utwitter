@@ -21,6 +21,19 @@
 		<div class="utweet">
 		<?php echo $time_line['post_body']; ?>
 		</div>
+		<div>
+		<ul class="utweet_action">
+		<li>
+		<img class="icon" src="../include/img/parts/comment.png">
+		へんじする</li>
+		<li>
+		<img class="icon" src="../include/img/parts/knife.png">
+		うついね</li>
+		<li>
+		<img class="icon" src="../include/img/parts/favorite.png">
+		おきにいり</li>
+		</ul>
+		</div>
 		</div>
 		</div>
 	</div>
