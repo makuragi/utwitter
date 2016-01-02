@@ -12,8 +12,13 @@ if (count($errors) !== 0) {
 <head>
 	<meta charset="utf-8">
 	<title>うついったー</title>
+<<<<<<< HEAD
 	<link rel="stylesheet" type="text/css" href="../htdocs/css/normalize.css" media="all">
 	<link rel="stylesheet" type="text/css" href="../htdocs/css/style.css" media="all">
+=======
+	<link rel="stylesheet" type="text/css" href="../include/common/normalize.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../include/common/style.css" media="all">
+>>>>>>> ff0fcd707df22196a5393993d6992d8e9a906a0c
 </head>
 <body>
 	<div class="container">

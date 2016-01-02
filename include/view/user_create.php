@@ -5,7 +5,6 @@
 	<title>うついったー</title>
  	<link rel="stylesheet" type="text/css" href="../htdocs/css/normalize.css" media="all">
 	<link rel="stylesheet" type="text/css" href="../htdocs/css/style.css" media="all">
-	
 </head>
 <body>
 	<div class="registration">
@@ -58,7 +57,10 @@
 		<a href="index.php">戻る</a>
 		<input type="submit" value="登録確認画面へ">
 	</form>
+<<<<<<< HEAD
 	
+=======
+>>>>>>> ff0fcd707df22196a5393993d6992d8e9a906a0c
 	</div>
 </body>
 </html>
