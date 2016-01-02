@@ -3,6 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>うついったー</title>
+	<link rel="stylesheet" type="text/css" href="../include/common/normalize.css" media="all">
 	<link rel="stylesheet" type="text/css" href="../include/common/style.css" media="all">
 </head>
 <body>

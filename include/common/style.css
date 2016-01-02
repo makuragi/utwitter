@@ -13,6 +13,10 @@ html{
 	margin: 0 auto;
 }
 
+h1, h2, h3, h4, h5, h6{
+	margin: 0 auto;
+}
+
 a:link { color:#0000ff; text-decoration:none }
 a:visited { color:#0000ff; text-decoration:none }
 a:hover { color:#000000; text-decoration:underline }
@@ -24,6 +28,18 @@ a:active { color:#0000ff; text-decoration:none }
 	clear: both;
 	display: block;
 }
+
+input[type="text"], input[type="password"]{
+	-webkit-border-radius: 9px;
+	-moz-border-radius: 9px;
+	border-radius: 9px;
+}
+textarea{
+	-webkit-border-radius: 9px;
+	-moz-border-radius: 9px;
+	border-radius: 9px;	
+}
+
 
 /*
 .contain {
@@ -51,8 +67,25 @@ a:active { color:#0000ff; text-decoration:none }
 }
 */
 
+/* --　TOP画面　-- */
+.menu{
+	border: solid 1px;
+	margin: 100px auto;
+	width: 30%;
+	height: 100px;
+}
 
-/* --ヘッダー-- */
+/* --　ユーザー登録画面　-- */
+
+.registration{
+	margin: 50px auto;
+	padding: 20px;
+	width: 40%;
+	font-size: 16px;
+}
+
+/* --　メイン画面　-- */
+/* --　ヘッダー　-- */
 
 
 header{
@@ -70,12 +103,9 @@ header{
 	background-position: center;
 	box-shadow:0px 5px 10px 0px #000;
 }
-
 .top_wrapper{
 	width: 100%;
 }
-
-
 .home_btn{
 	bottom: 0;
 	float:left;
