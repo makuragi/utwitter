@@ -3,14 +3,29 @@
 
 html{
 	font-size: 100%;
-	background-image: url(../img/parts/main_bg.jpg);
+	background-image: url(../../include/img/parts/main_bg.jpg);
 	background-position: center;
-	
+	background-repeat: x-repeat;
 }
 
 .container{
 	width: 980px;
 	margin: 0 auto;
+}
+
+h1, h2, h3, h4, h5, h6{
+	margin: 0 auto;
+}
+
+ul{
+	margin: 0;
+	padding: 0;
+}
+
+li{
+	list-style-type: none;
+	margin: 0 auto;
+	padding: 0;
 }
 
 a:link { color:#0000ff; text-decoration:none }
@@ -24,6 +39,18 @@ a:active { color:#0000ff; text-decoration:none }
 	clear: both;
 	display: block;
 }
+
+input[type="text"], input[type="password"]{
+	-webkit-border-radius: 9px;
+	-moz-border-radius: 9px;
+	border-radius: 9px;
+}
+textarea{
+	-webkit-border-radius: 9px;
+	-moz-border-radius: 9px;
+	border-radius: 9px;	
+}
+
 
 /*
 .contain {
@@ -51,8 +78,42 @@ a:active { color:#0000ff; text-decoration:none }
 }
 */
 
+/* --　TOP画面　-- */
+.menu{
+	border: solid 1px;
+	margin: 100px auto;
+	width: 30%;
+	height: 100px;
+}
 
-/* --ヘッダー-- */
+/* --　ユーザー登録画面　-- */
+
+.registration{
+	margin: 50px auto;
+	padding: 20px;
+	width: 40%;
+	font-size: 16px;
+}
+#pre-thumb{
+    width:200px;
+    overflow:hidden;
+}
+#thumb{
+    width:100px;
+    height:100px;
+    overflow:hidden;
+}
+
+#confirm img{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+
+}
+
+
+/* --　メイン画面　-- */
+/* --　ヘッダー　-- */
 
 
 header{
@@ -64,18 +125,15 @@ header{
 	height: 100px;
 	margin: auto;
 	background-color: #FFFFFF;
-	background-image: url(../img/parts/header_bg.jpg);
+	background-image: url(../../include/img/parts/header_bg.jpg);
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
 	box-shadow:0px 5px 10px 0px #000;
 }
-
 .top_wrapper{
 	width: 100%;
 }
-
-
 .home_btn{
 	bottom: 0;
 	float:left;
@@ -97,7 +155,6 @@ header{
 .left_container{
 	width: 20%;
 	float: left;
-	text-align: center;
 	position: relative;
 }
 
@@ -112,12 +169,15 @@ header{
 	
 }
 .my_profile_image{
-	width: 40%;
+	width: 78px;
+	height: 78px;
 	float: left;
+	overflow: hidden;
+	border-radius: 9px;
 }
 .my_profile_image img{
-	border-radius: 9px;
-	width: 100%;	
+	width: 100%;
+	height: auto;	
 }
 .my_profile_user{
 	width: 60%;
@@ -125,8 +185,8 @@ header{
 	text-align: left;
 }
 .my_profile_user ul{
-	line-height: 100%;
-	padding: 5px;
+	padding: 0 5px;
+	margin: 0 auto;
 	list-style-type: none;
 	float: left;
 }
@@ -141,9 +201,10 @@ header{
 }
 .my_profile_user_name{
 	font-size: 1.5rem;
+	width: 100px;
 	overflow: hidden; /*省略表記*/  
-    /*white-space: nowrap;  /*省略表記*/
-    /*text-overflow: ellipsis;  /*省略表記*/
+    white-space: nowrap;  /*省略表記*/
+    text-overflow: ellipsis;  /*省略表記*/
 }
 .my_profile_user_id{
 	font-size: 0.8rem;
@@ -177,7 +238,7 @@ header{
 
 #userList {
 	width: 100%;
-	text-align:center;
+	text-align:left;
 }
 .user_list_title{
 	width: 100%;
@@ -185,24 +246,53 @@ header{
 }
 
 .user_profile {
-	border:solid 1px;
 	width: 100%;
+	height: 100px;
+	padding: 0;
+	margin: 5px 0;
+	border-radius: 30px;
+	background-color: rgba(255,255,255,0.5)
+	
 }
 .user_profile_image{
-	width: 30%;
-	float: left;
-	padding: 5px;
-	box-sizing: border-box;
-	}
-.user_profile img{
-	width: 100%;
+	width: 52px;
+	height: 52px;
 	border-radius: 9px;
-		
-}
-.user_profile image{
-	width: 70%;
-	float: left;		
+	margin: 5px;
+	overflow: hidden;
 	}
+.user_profile_image img{
+	width: 100%;
+	height: auto;		
+}
+.user_profile input{
+	font-size: 5px;
+	margin-bottom: 0;
+}
+.follow_btn{
+	margin: 0 auto;
+	padding: 0;
+}
+.user_profile_left{
+	float:left;
+	text-align: center;
+}
+.user_profile_left :after{
+	float: clear;
+}
+
+.follower_user_name{
+}
+.follower_user_id{
+	font-size: 5px;
+	color: gray;
+}
+.follower_user_profile{
+	font-size: 10px;
+	height: 60px;
+	overflow: hidden;
+	padding: 0 5px;
+}
 
 /* --右カラム-- */
 .right_container{

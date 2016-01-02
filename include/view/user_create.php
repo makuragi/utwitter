@@ -3,9 +3,13 @@
 <head>
 	<meta charset="utf-8">
 	<title>うついったー</title>
+ 	<link rel="stylesheet" type="text/css" href="../htdocs/css/normalize.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../htdocs/css/style.css" media="all">
+	
 </head>
 <body>
-    <h1>ユーザ登録</h1>
+	<div class="registration">
+    <h2>ユーザ登録</h2>
 	<form action="./user_controller.php" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="action_id" value="user_create_confirm">
 		ユーザID：<input type="text" name="user_id" value=
@@ -54,5 +58,7 @@
 		<a href="index.php">戻る</a>
 		<input type="submit" value="登録確認画面へ">
 	</form>
+	
+	</div>
 </body>
 </html>
