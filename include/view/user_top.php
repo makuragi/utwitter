@@ -3,7 +3,7 @@
 <div class="left_container">
 	<div class="my_profile">
 	<div class="my_profile_image hvr-glow">
-	<img src= "<?php echo $login_user_info['user_profile_photo']; ?>" >
+	<a href="./profile_controller.php?action_id=profile&user_profile_id=<?php echo $login_id; ?>"><img src="<?php echo $login_user_info['user_profile_photo']; ?>" ></a>
 	</div>
 	<div class="my_profile_user">
 		<ul>

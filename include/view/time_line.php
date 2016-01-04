@@ -3,8 +3,10 @@
 <?php foreach($all_time_line as $time_line) { ?>
 	<div class="time_line">
 		<div class="utweet_box">
-		<div class="utweet_profile_image">
+		<div class="utweet_profile_image hvr-glow">
+			<a href="./profile_controller.php?action_id=profile&user_profile_id=<?php echo $time_line['user_id']; ?>">
 			<img src= "<?php echo $time_line['user_profile_photo']; ?>" >
+			</a>
 		</div>
 		<div class="utweet_info">
 		<div class="utweet_user_top">
@@ -12,7 +14,7 @@
 				<a href="./profile_controller.php?action_id=profile&user_profile_id=<?php echo $time_line['user_id']; ?>"><?php echo $time_line['user_name']; ?></a>
 			</div>
 			<div class="utweet_user_name">
-				@<?php echo $time_line['user_id'] ?>
+				@<?php echo $time_line['user_name'] ?>
 			</div>
 			<div class="utweet_date">
 			<?php echo $time_line['post_date'] ?>

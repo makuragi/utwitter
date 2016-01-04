@@ -7,7 +7,9 @@
 			<form action="./main_controller.php" method="post">
 			<div class="user_profile_left">
 				<div class="user_profile_image hvr-glow">
+				<a href="./profile_controller.php?action_id=profile&user_profile_id=<?php echo $user['user_name']; ?>">
 				<img src= "<?php echo $user['user_profile_photo']; ?>" >
+				</a>
 				</div>
 				<div class="button follow_btn">
 					<?php if (in_array($user['user_id'], $my_follow_list) === false) { ?>

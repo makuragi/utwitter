@@ -168,6 +168,10 @@ header{
 	height: 150px;
 	
 }
+.my_profile_mypage{
+	width: 100%;
+	
+}
 .my_profile_image{
 	width: 78px;
 	height: 78px;
@@ -175,7 +179,18 @@ header{
 	overflow: hidden;
 	border-radius: 9px;
 }
+.my_profile_image_mypage{
+	width: 160px;
+	height: 160px;
+	margin: 0 auto;
+	overflow: hidden;
+	border-radius: 9px;
+}
 .my_profile_image img{
+	width: 100%;
+	height: auto;	
+}
+.my_profile_image_mypage img{
 	width: 100%;
 	height: auto;	
 }
@@ -184,6 +199,7 @@ header{
 	float: left;
 	text-align: left;
 }
+
 .my_profile_user ul{
 	padding: 0 5px;
 	margin: 0 auto;
@@ -199,9 +215,14 @@ header{
 .my_profile_user a:visited{
 	color: red;
 }
+.my_profile_user_mypage{
+	margin: 0 auto;
+	padding: 0 5px;
+	
+}
 .my_profile_user_name{
 	font-size: 1.5rem;
-	width: 100px;
+	width: 150px;
 	overflow: hidden; /*省略表記*/  
     white-space: nowrap;  /*省略表記*/
     text-overflow: ellipsis;  /*省略表記*/
@@ -227,6 +248,34 @@ header{
 .my_profile_info p{
 	font-size: 0.3rem;
 }
+
+.my_profile_user_profile_mypage{
+	width: 190px;
+	font-size: 0.8rem;
+	margin: 0 auto;
+	text-align: center;
+}
+.my_profile_user_date_mypage{
+	width: 100%;
+	font-size: 0.5rem;
+	color: gray;
+	opacity: 0.8;
+	text-align: right;
+}
+.btn_profile_edit_mypage{
+	text-align: right;
+}
+#my_profile_edit p{
+	font-size: 0.8rem;
+	color: gray;
+	margin: 0 auto;
+}
+#my_profile_edit textarea{
+	width: 180px;
+	height: auto;
+	font-size: 0.8rem;
+}
+
 
 .my_profile:after {
     content: "";
@@ -261,6 +310,7 @@ header{
 	margin: 5px;
 	overflow: hidden;
 	}
+
 .user_profile_image img{
 	width: 100%;
 	height: auto;		

@@ -12,5 +12,5 @@
 <div class="container">
 	<div class="top_wrapper">
 	<div class="home_btn">
-	<a href="./index.php">HOME</a><br>
+	<input type="button" value="HOME" onClick="location="./index.php">
 	</div>
