@@ -57,10 +57,6 @@
 		<a href="index.php">戻る</a>
 		<input type="submit" value="登録確認画面へ">
 	</form>
-<<<<<<< HEAD
-	
-=======
->>>>>>> ff0fcd707df22196a5393993d6992d8e9a906a0c
 	</div>
 </body>
 </html>
