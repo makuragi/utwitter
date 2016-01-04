@@ -25,20 +25,48 @@
 </div>
 </div>
 
-
 <div class="right_container">
 <div id="all_timeline">
 <h3>うつぶやき</h3>
 <?php foreach($my_time_line as $post) { ?>
-	<div class="my_post">
-		<?php echo $my_profile['user_name'] ?>&nbsp;
-		<?php echo $user_profile_id ?><br>
-		<?php echo $post['post_body']; ?><br>
-		<?php echo $post['post_date'] ?>
-	</div>
-<?php } ?>
+<div class="utweet_box">
+		<div class="utweet_profile_image">
+			<img src= "<?php echo $my_profile['user_profile_photo']; ?>" >
+		</div>
+		<div class="utweet_info">
+		<div class="utweet_user_top">
+			<div class="utweet_user_id">
+				<a href="./profile_controller.php?action_id=profile&user_profile_id=<?php echo $login_id; ?>"><?php echo $login_user_info['user_name']; ?></a>
+			</div>
+			<div class="utweet_user_name">
+				<a><?php echo '@'.$login_id; ?></a>
+			</div>
+			<div class="utweet_date">
+			<?php echo $post['post_date'] ?>
+			</div>
+		</div>
+		<div class="utweet">
+		<?php echo $post['post_body']; ?>
+		</div>
+		<div>
+		<ul class="utweet_action">
+		<li>
+		<img class="icon hvr-pulse" src="../include/img/parts/comment.png">
+		へんじする</li>
+		<li>
+		<img class="icon hvr-pulse" src="../include/img/parts/knife.png">
+		うついね</li>
+		<li>
+		<img class="icon hvr-pulse" src="../include/img/parts/favorite.png">
+		おきにいり</li>
+		</ul>
+
+		</div>
+		</div>
+		</div>
+		<?php } ?>
 </div>
-</div>
+
 </div>
 </div>
 </div>

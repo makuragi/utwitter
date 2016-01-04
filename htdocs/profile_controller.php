@@ -65,9 +65,8 @@ if (getGet('action_id') === 'profile') {
 if (isPost()) {
 	// ユーザプロフィール編集
 	if (getPost('action_id') === 'profile_edit') {
-		$user_profile_id = getGet('user_profile_id');
-		$my_profile = $main->getMyProfile($user_profile_id);
-		$my_time_line = $main->getMyTimeLine($user_profile_id);
+		$my_profile = $main->getMyProfile($login_id);
+		$my_time_line = $main->getMyTimeLine($login_id);
 		include_once '../include/view/my_profile_edit.php';
 	} else if (getPost('action_id') === 'profile_edit_complete') {
 		// todo: プロフィール更新処理

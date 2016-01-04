@@ -5,11 +5,13 @@ html{
 	font-size: 100%;
 	background-image: url(../../include/img/parts/main_bg.jpg);
 	background-position: center;
-	background-color: #FFF
+	background-color: #FFF;
+	background-attachment:fixed;
 }
 
 .container{
 	width: 980px;
+	height: auto;
 	margin: 0 auto;
 }
 
