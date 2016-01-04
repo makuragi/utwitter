@@ -5,6 +5,7 @@ require_once '../include/common/function.php';
 
 require_once '../include/model/post_model.php';
 require_once '../include/model/main_model.php';
+require_once '../include/model/profile_model.php';
 
 // ログイン情報を読み込み
 include_once '../include/common/start_session.php';
@@ -24,6 +25,7 @@ $errors = array();
 // modelオブジェクト作成
 $main = new main_model();
 $post = new post_model();
+$profile = new profile_model();
 
 // ログインIDを変数に格納する
 $login_id  = $_SESSION['login_id'];
@@ -61,7 +63,6 @@ if (getGet('action_id') === 'profile') {
 	$my_time_line = $main->getMyTimeLine($user_profile_id);
 	include_once '../include/view/my_profile.php';
 }
-
 if (isPost()) {
 	// ユーザプロフィール編集
 	if (getPost('action_id') === 'profile_edit') {
@@ -70,8 +71,30 @@ if (isPost()) {
 		include_once '../include/view/my_profile_edit.php';
 	} else if (getPost('action_id') === 'profile_edit_complete') {
 		// todo: プロフィール更新処理
+		$edit_user_name = entity_str(getPost('edit_user_name'));
+		if (!isExist($edit_user_name)) {
+			$errors[] = 'ユーザネームを入力してください';
+		} else if (!isOverText($edit_user_name, 20)) {
+			$errors[] = '文字数は20文字以内で入力してください';
+		}
+		$edit_user_profile = entity_str(getPost('edit_user_profile'));
+		if (!isExist($edit_user_profile)) {
+			$errors[] = 'プロフィールを入力してください';
+		} else if (isOvertext($edit_user_profile, 200)) {
+			$errors[] = '文字数は200文字以内にしてください';
+		}
+		if (count($errros) === 0) {
+			if (!$profile->profileEdit($login_id, $edit_user_name, $edit_user_profile)) {
+				$errors[] = '更新に失敗しました';
+			} else {
+				header('HTTP/1.1 303 See Other');
+				header('Location: http://localhost/utwitter/htdocs/profile_controller.php?action_id=profile&user_profile_id='.$login_id);
+				exit();
+			}
+		}
 	}
 }
+
 
 // エラー表示
 include_once '../include/common/errors.php';

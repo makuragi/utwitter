@@ -8,19 +8,20 @@ class profile_model {
 	 * @param unknown $user_profile
 	 * @param unknown $user_profile_photo
 	 */
-	public function profileEdit ($user_id, $user_name, $user_profile, $user_profile_photo) {
+	public function profileEdit ($user_id, $user_name, $user_profile) {
 		try {
 			// DBコネクトオブジェクト取得
 			$db = get_db_connect();
 
 			// SQL文を作成
-			$sql = 'UPDATE user_table SET user_name = :user_name, user_profile = :user_profile, user_profile_photo = :user_profile_photo
+			$sql = 'UPDATE user_table SET user_name = :user_name, user_profile = :user_profile
 			WHERE user_id = :user_id AND user_delete_flag = 0';
+
+			$prepare= $db->prepare($sql);
 
 			// SQL文のプレースホルダーに値をバインドする
 			$prepare->bindValue(':user_name', $user_name, PDO::PARAM_STR);
 			$prepare->bindValue(':user_profile', $user_profile, PDO::PARAM_STR);
-			$prepare->bindValue(':user_profile_photo',$user_profile_photo, PDO::PARAM_STR);
 			$prepare->bindValue(':user_id',$user_id , PDO::PARAM_STR);
 
 			// 成功したときにtrue失敗したときにfalseを返す
