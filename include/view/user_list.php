@@ -22,7 +22,7 @@
 				<div class="user_profile_right">
 				<ul>
 				<li class="follower_user_name"><input type="hidden" name="follower_user_id" value="<?php echo $user['user_name']; ?>">
-				<a href="./main_controller.php?action_id=profile&user_profile_id=<?php echo $user['user_name']; ?>">
+				<a href="./profile_controller.php?action_id=profile&user_profile_id=<?php echo $user['user_name']; ?>">
 				<?php echo $user['user_name']; ?></a></li>
 				<li class="follower_user_id"><?php echo $user['user_id']?></li>
 				<li  class="follower_user_profile"><?php echo $user['user_profile']; ?></li>

@@ -9,7 +9,7 @@
 		<div class="utweet_info">
 		<div class="utweet_user_top">
 			<div class="utweet_user_id">
-				<a href="./main_controller.php?action_id=profile&user_profile_id=<?php echo $time_line['user_id']; ?>"><?php echo $time_line['user_name']; ?></a>
+				<a href="./profile_controller.php?action_id=profile&user_profile_id=<?php echo $time_line['user_id']; ?>"><?php echo $time_line['user_name']; ?></a>
 			</div>
 			<div class="utweet_user_name">
 				@<?php echo $time_line['user_id'] ?>
