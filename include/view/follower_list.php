@@ -1,4 +1,4 @@
-<!-- 
+<!--
 	<div id="my_profile">
 	<img src='<?php echo $login_user_info['user_profile_photo'] ?>'><br>
 	ユーザ名：<?php echo $login_user_info['user_name'] ?><br>
@@ -13,7 +13,7 @@
 	<?php foreach($my_followers as $my_follower_user) { ?>
 		<img src="<?php echo $my_follower_user['user_profile_photo']; ?>">
 		<?php echo $my_follower_user['user_id']; ?>
-		<?php echo $my_follower_user['user_name']; ?>
+		<a href="./profile_controller.php?action_id=profile&user_profile_id=<?php echo $my_follower_user['user_id']; ?>"><?php echo $my_follower_user['user_name']; ?></a>&nbsp;
 		<?php echo $my_follower_user['user_profile']; ?>
 	<?php } ?>
 	</div>

@@ -8,6 +8,14 @@
 	</div>
 </div>
 
+// プロフ編集フォーム
+<?php if ($user_profile_id === $login_id) { ?>
+<form action="./profile_controller.php" method="post">
+	<input type="hidden" name="action_id" value="profile_edit">
+	<input type="submit" value="ぷろふ編集">
+</form>
+<?php } ?>
+
 <div class="left_wrapper">
 <div id="my_timeline" class="left">
 <h3>うつぶやき</h3>

@@ -1,6 +1,3 @@
-
-
-
 <?php
 
 // 関数ファイル読み込み
@@ -41,7 +38,6 @@ $my_follow_list = array();
 $all_time_line = array();
 
 // ユーザ情報を取得する
-
 $login_user_info = $main->getMyProfile($login_id);
 
 // フォロー一覧を取得
@@ -115,13 +111,7 @@ if (isPost()) {
 	}
 }
 
-// ユーザ名がクリックされたとき、プロフィールページに遷移する
-if (getGet('action_id') === 'profile') {
-	$user_profile_id = getGet('user_profile_id');
-	$my_profile = $main->getMyProfile($user_profile_id);
-	$my_time_line = $main->getMyTimeLine($user_profile_id);
-	include_once '../include/view/my_profile.php';
-} else if (getGet('action_id') === 'follow') {
+if (getGet('action_id') === 'follow') {
 // フォローユーザ一覧画面を表示する
 	// ユーザ一プロフィール
 	include_once '../include/view/user_top.php';
@@ -154,7 +144,6 @@ if (getGet('action_id') === 'profile') {
 	include_once '../include/view/time_line.php';
 	// メッセージ表示
 	include_once '../include/common/msg.php';
-
 }
 
 
