@@ -3,7 +3,9 @@
 <head>
 	<meta charset="utf-8">
 	<title>うついったー</title>
-	<link rel="stylesheet" type="text/css" href="../include/common/style.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../htdocs/css/normalize.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../htdocs/css/style.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../htdocs/css/hover-min.css" media="all">
 </head>
 <body>
 <header>
