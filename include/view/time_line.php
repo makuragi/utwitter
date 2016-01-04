@@ -14,7 +14,7 @@
 				<a href="./profile_controller.php?action_id=profile&user_profile_id=<?php echo $time_line['user_id']; ?>"><?php echo $time_line['user_name']; ?></a>
 			</div>
 			<div class="utweet_user_name">
-				@<?php echo $time_line['user_name'] ?>
+				@<?php echo $time_line['user_id']; ?>
 			</div>
 			<div class="utweet_date">
 			<?php echo $time_line['post_date'] ?>

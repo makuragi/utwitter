@@ -7,15 +7,15 @@
 		</div>
 			<div class="my_profile_user_mypage">
 				<div class="my_profile_user_name">
-					<a href="./profile_controller.php?action_id=profile&user_profile_id=<?php echo $login_id; ?>"><?php echo $login_user_info['user_name']; ?></a>
+					<a href="./profile_controller.php?action_id=profile&user_profile_id=<?php echo $user_profile_id; ?>"><?php echo $my_profile['user_name']; ?></a>
 				</div>
 				<div class="my_profile_user_id">
-					<a href="./profile_controller.php?action_id=profile&user_profile_id=<?php echo $login_id; ?>"><?php echo '@'.$login_id; ?></a>
+					<a href="./profile_controller.php?action_id=profile&user_profile_id=<?php echo $user_profile_id; ?>"><?php echo '@'.$user_profile_id; ?></a>
 				</div>
 			</div>
 			<div class="my_profile_info clear">
 			<ul class="my_profile_num">
-				<li><p>うついーと数</p><a href="./profile_controller.php?action_id=profile&user_profile_id=<?php echo $login_id; ?>"><?php echo $my_utweet_num; ?></a></li>
+				<li><p>うついーと数</p><a href="./profile_controller.php?action_id=profile&user_profile_id=<?php echo $user_profile_id; ?>"><?php echo $my_utweet_num; ?></a></li>
 				<li><p>フォロー数</p><a href="./main_controller.php?action_id=follow"><?php echo $my_follow_num; ?></a></li>
 				<li><p>フォロワー数</p><a href="./main_controller.php?action_id=follower"><?php echo $my_follower_num; ?></a></li>
 			</ul>
@@ -53,10 +53,10 @@
 		<div class="utweet_info">
 		<div class="utweet_user_top">
 			<div class="utweet_user_id">
-				<a href="./profile_controller.php?action_id=profile&user_profile_id=<?php echo $login_id; ?>"><?php echo $login_user_info['user_name']; ?></a>
+				<a href="./profile_controller.php?action_id=profile&user_profile_id=<?php echo $user_profile_id; ?>"><?php echo $my_profile['user_name']; ?></a>
 			</div>
 			<div class="utweet_user_name">
-				<a><?php echo '@'.$login_id; ?></a>
+				<a><?php echo '@'.$user_profile_id; ?></a>
 			</div>
 			<div class="utweet_date">
 			<?php echo $post['post_date'] ?>

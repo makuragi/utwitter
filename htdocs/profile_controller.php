@@ -88,7 +88,7 @@ if (isPost()) {
 				$errors[] = '更新に失敗しました';
 			} else {
 				header('HTTP/1.1 303 See Other');
-				header('Location: http://localhost/utwitter/htdocs/profile_controller.php?action_id=profile&user_profile_id='.$login_id);
+				header('Location: http://localhost/utwitter/htdocs/profile_controller.php?action_id=profile&user_profile_id='	.$login_id);
 				exit();
 			}
 		}
