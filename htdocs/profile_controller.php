@@ -99,15 +99,15 @@ if (isPost()) {
 		$edit_user_profile = entity_str(getPost('edit_user_profile'));
 		if (!isExist($edit_user_profile)) {
 			$errors[] = 'プロフィールを入力してください';
-		} else if (isOvertext($edit_user_profile, 200)) {
+		} else if (!isOvertext($edit_user_profile, 200)) {
 			$errors[] = '文字数は200文字以内にしてください';
 		}
-		if (count($errros) === 0) {
+		if (count($errors) === 0) {
 			if (!$profile->profileEdit($login_id, $edit_user_name, $edit_user_profile)) {
 				$errors[] = '更新に失敗しました';
 			} else {
 				header('HTTP/1.1 303 See Other');
-				header('Location: http://localhost/utwitter/htdocs/profile_controller.php?action_id=profile&user_profile_id='	.$login_id);
+				header('Location: http://localhost/utwitter/htdocs/profile_controller.php?action_id=profile&user_profile_id=' . $login_id);
 				exit();
 			}
 		}
