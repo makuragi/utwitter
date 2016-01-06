@@ -13,7 +13,7 @@
 				<input type="text" name="edit_user_name" value="<?php echo $login_user_info['user_name'] ?>" placeholder="ユーザー名を入力してください"><br>
 				<p>ユーザID</p><?php echo $login_id ?>
 				<p>プロフィール</p>
-				<textarea name="edit_user_prifole" rows="7" cols="40" placeholder="プロフィールを入力してください"><?php echo $login_user_info['user_profile'] ?></textarea><br>
+				<textarea name="edit_user_profile" rows="7" cols="40" placeholder="プロフィールを入力してください"><?php echo $login_user_info['user_profile']; ?></textarea><br>
 			<div class="my_profile_user_date_mypage">
 				登録日時<?php echo date('Y-m-d', strtotime($login_user_info['user_date'])); ?>
 			</div>

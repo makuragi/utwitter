@@ -189,10 +189,10 @@ class main_model {
 
 	/**
 	 * フォロー一覧を取得する
-	 * @param unknown $login_id
+	 * @param unknown $user_id
 	 * @return multitype:
 	 */
-	public function myFollowUser ($login_id) {
+	public function myFollowUser ($user_id) {
 		try {
 			// DBコネクトオブジェクト取得
 			$db = get_db_connect();
@@ -201,13 +201,13 @@ class main_model {
 			$sql = 'SELECT follow.follower_user_id,user.user_id, user.user_name, user.user_profile,
 			user.user_profile_photo, user.user_profile_background FROM follow_table as follow
 			INNER JOIN user_table as user ON follow.follower_user_id = user.user_id
-			WHERE follow.follow_user_id = :login_id AND follow.follow_delete_flag = 0
+			WHERE follow.follow_user_id = :user_id AND follow.follow_delete_flag = 0
 			AND user.user_delete_flag = 0';
 
 			$prepare= $db->prepare($sql);
 
 			// SQL文のプレースホルダーに値をバインドする
-			$prepare->bindValue(':login_id',$login_id , PDO::PARAM_STR);
+			$prepare->bindValue(':user_id',$user_id , PDO::PARAM_STR);
 
 			$prepare->execute();
 
