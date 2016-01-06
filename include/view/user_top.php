@@ -1,5 +1,5 @@
 <div class="container">
-<div class="main_wrapper">
+<div class="main_wrapper clearfix">
 <div class="left_container">
 	<div class="my_profile">
 	<div class="my_profile_image hvr-glow">

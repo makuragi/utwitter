@@ -33,8 +33,9 @@
 					<input type="hidden" name="action_id" value="profile_edit">
 					<input type="submit" value="ぷろふ編集">
 				</form>
+				<?php } ?>
 			</div>
-			<?php } ?>
+
 			</div>
 		</div>
 </div>

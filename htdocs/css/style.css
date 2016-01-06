@@ -149,7 +149,8 @@ header{
 
 .main_wrapper{
 	width: 100%;
-	padding: 0 15px;
+	height: auto;
+	padding: 0 auto;
 	margin: 120px auto 0;
 }
 
@@ -220,6 +221,7 @@ header{
 .my_profile_user_mypage{
 	margin: 0 auto;
 	padding: 0 5px;
+	height: auto;
 	
 }
 .my_profile_user_name{
@@ -351,7 +353,7 @@ header{
 	width: 80%;
 	float: left;
 	text-align: center;
-	margin: 0 auto;
+
 }
 
 #my_timeline {
