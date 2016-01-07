@@ -4,10 +4,11 @@
 <div class="left_container">
 	<div class="my_profile_mypage">
 		<div class="my_profile_user_mypage">
-		<form action="./profile_controller.php" method="post">
+		<form action="./profile_controller.php" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="action_id" value="profile_edit_complete">
+				<input type="file" accept="image/*" id = "getfile" name="edit_user_profile_photo">
 			<div class="my_profile_image_mypage">
-				<img src='<?php echo $login_user_info['user_profile_photo'] ?>'>
+				<img src='<?php echo $login_user_info['user_profile_photo'] ?>' id="preview">
 			</div>
 				<p>ユーザー名</p>
 				<input type="text" name="edit_user_name" value="<?php echo $login_user_info['user_name'] ?>" placeholder="ユーザー名を入力してください"><br>

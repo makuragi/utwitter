@@ -6,6 +6,9 @@
 	<link rel="stylesheet" type="text/css" href="../htdocs/css/normalize.css" media="all">
 	<link rel="stylesheet" type="text/css" href="../htdocs/css/style.css" media="all">
 	<link rel="stylesheet" type="text/css" href="../htdocs/css/hover-min.css" media="all">
+	<script type="text/javascript" src="./js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="./js/script.js"></script>
+
 </head>
 <body>
 <header>

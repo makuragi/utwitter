@@ -247,3 +247,57 @@ function checkFile($i) {
 	}
 	return array(false, $ext, $error_msg);
 }
+
+/**
+ * 画像更新ファイルをチェックする
+ * @return multitype:boolean string multitype:string
+ */
+function checkUpdateFile() {
+	$error_msg = array();
+	$ext = '';
+
+	$size = $_FILES['edit_user_profile_photo']['size'];
+	$error = $_FILES['edit_user_profile_photo']['error'];
+	$img_type = $_FILES['edit_user_profile_photo']['type'];
+	$tmp_name = $_FILES['edit_user_profile_photo']['tmp_name'];
+
+	if ($error != UPLOAD_ERR_OK) {
+		if ($error == UPLOAD_ERR_NO_FILE) {
+			// アップロードされなかった場合はエラー処理を行わない
+		} else if ($error == UPLOAD_ERR_INI_SIZE || $error == UPLOAD_ERR_FORM_SIZE) {
+			$error_msg[] = 'ファイルサイズは100kb以下にしてください';
+		} else {
+			$error_msg[] = 'アップロードエラーです';
+		}
+		return array(false, $ext, $error_msg);
+	} else {
+		if ($img_type == 'image/gif') {
+			$ext = '.gif';
+		} else if ($img_type == 'image/jpeg' || $img_type == 'image/pjpeg') {
+			$ext = '.jpg';
+		} else if ($img_type == 'image/png' || $img_type == 'image/x-png') {
+			$ext = '.png';
+		}
+
+		// 画像ファイルのMIMEタイプを判定します
+		$finfo = new finfo(FILEINFO_MIME_TYPE);
+		$finfoType = $finfo->file($tmp_name);
+
+		// 画像ファイルのサイズ下限をチェックします
+		if ($size == 0) {
+			$error_msg[] = 'ファイルが存在しないか空のファイルです';
+			// 画像ファイルのサイズ上限をチェックします
+		} else if ($size > FILE_MAX_SIZE) {
+			$error_msg[] = 'ファイルサイズは100kb以下にしてください';
+			// 送信されたMIMEタイプと、画像ファイルのMIMEタイプが一致するかを確認します
+		} else if ($img_type != $finfoType) {
+			$error_msg[] = 'MIMEタイプが一致しません';
+			// 画像ファイルの拡張子をチェックします
+		} else if ($ext != '.gif' && $ext != '.jpg' && $ext != '.png') {
+			$error_msg[] = 'アップロード可能なファイルはgif, jpg, pngのみです';
+		} else {
+			return array(true, $ext, $error_msg);
+		}
+	}
+	return array(false, $ext, $error_msg);
+}

@@ -40,6 +40,9 @@ $login_user_info = array();
 $user_list = array();
 $my_follow_list = array();
 
+//アップロードした画像を配置するsrcパス
+$dir_src = '../include/img/src/';
+
 // DBコネクトオブジェクト取得
 try {
 	$db = get_db_connect();
@@ -111,13 +114,38 @@ if (isPost()) {
 		} else if (!isOvertext($edit_user_profile, 200)) {
 			$errors[] = '文字数は200文字以内にしてください';
 		}
-		if (count($errors) === 0) {
-			if (!$profile->profileEdit($db, $login_id, $edit_user_name, $edit_user_profile)) {
-				$errors[] = '更新に失敗しました';
-			} else {
-				header('HTTP/1.1 303 See Other');
-				header('Location: http://localhost/utwitter/htdocs/profile_controller.php?action_id=profile&user_profile_id=' . $login_id);
-				exit();
+		if (isset($_FILES['edit_user_profile_photo'])) {
+		// todo: 画像アップロード入力チェック
+			if (!checkPostMaxSize()) {
+				$errors[] = 'ファイルサイズは100KB以下にしてください';
+			}
+			// アップロードファイルチェック
+			list($result, $ext, $error_msg) = checkUpdateFile();
+			$errors = array_merge($errors, $error_msg);
+
+			if ($result) {
+				$name = $_FILES['edit_user_profile_photo']['name'];
+				$tmp_name = $_FILES['edit_user_profile_photo']['tmp_name'];
+
+				// 画像保存先ファイルパス
+				$move_to = $dir_src . makeRandStr() .$ext;
+
+				// アップロードした一時ファイルを指定した場所へ移動します
+				if (!move_uploaded_file($tmp_name, $move_to)) {
+					$errors[] = '画像のアップロードに失敗しました';
+						$edit_user_profile_photo = '';
+				} else {
+						$edit_user_profile_photo = $move_to;
+				}
+			}
+			if (count($errors) === 0) {
+				if (!$profile->profileEdit($db, $login_id, $edit_user_name, $edit_user_profile, $edit_user_profile_photo)) {
+					$errors[] = '更新に失敗しました';
+				} else {
+					header('HTTP/1.1 303 See Other');
+					header('Location: http://localhost/utwitter/htdocs/profile_controller.php?action_id=profile&user_profile_id=' . $login_id);
+					exit();
+				}
 			}
 		}
 	}
