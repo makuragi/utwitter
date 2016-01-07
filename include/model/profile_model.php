@@ -3,15 +3,14 @@ class profile_model {
 
 	/**
 	 * ユーザプロフィールを更新する
+	 * @param unknown $db
 	 * @param unknown $user_id
 	 * @param unknown $user_name
 	 * @param unknown $user_profile
-	 * @param unknown $user_profile_photo
+	 * @return boolean
 	 */
-	public function profileEdit ($user_id, $user_name, $user_profile) {
+	public function profileEdit ($db, $user_id, $user_name, $user_profile) {
 		try {
-			// DBコネクトオブジェクト取得
-			$db = get_db_connect();
 
 			// SQL文を作成
 			$sql = 'UPDATE user_table SET user_name = :user_name, user_profile = :user_profile

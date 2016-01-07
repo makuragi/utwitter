@@ -4,14 +4,12 @@ class user_model {
 
 	/**
 	 * 重複したユーザIDがないかチェックする
+	 * @param unknown $db
 	 * @param unknown $user_id
 	 * @return boolean
 	 */
-	public function isUserExist($user_id) {
+	public function isUserExist($db, $user_id) {
 		try {
-
-			// DBコネクトオブジェクト取得
-			$db = get_db_connect();
 
 			// SQLを作成
 			$sql = 'SELECT COUNT(*) as count FROM user_table WHERE user_id = :user_id AND user_delete_flag = 0';
@@ -39,14 +37,12 @@ class user_model {
 
 	/**
 	 * 重複したemailがないかチェックする
+	 * @param unknown $db
 	 * @param unknown $user_email
 	 * @return boolean
 	 */
-	public function isEmailExist($user_email) {
+	public function isEmailExist($db, $user_email) {
 		try {
-
-			// DBコネクトオブジェクト取得
-			$db = get_db_connect();
 
 			// SQLを作成
 			$sql = 'SELECT COUNT(*) as count FROM user_table WHERE user_email = :user_email AND user_delete_flag = 0';
@@ -75,11 +71,10 @@ class user_model {
 
 	/**
 	 * ユーザ情報を登録する
+	 * @param unknown $db
 	 */
-	public function userCreate() {
+	public function userCreate($db) {
 		try {
-			// DBコネクトオブジェクト取得
-			$db = get_db_connect();
 
 			// 現在日時を取得
 			$user_date = date('Y-m-d H:i:s');

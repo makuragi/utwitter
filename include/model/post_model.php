@@ -4,14 +4,14 @@ class post_model {
 
 	/**
 	 * 投稿をDB登録する
+	 * @param unknown $db
 	 * @param unknown $login_id
 	 * @param unknown $color_id
 	 * @param unknown $post_body
 	 */
-	public function postCreate($login_id, $color_id, $post_body) {
+	public function postCreate($db, $login_id, $color_id, $post_body) {
 
 		try {
-			$db = get_db_connect();
 
 			// 現在日時を取得
 			$post_date = date('Y-m-d H:i:s');

@@ -29,8 +29,20 @@
 		<img class="icon hvr-pulse" src="../include/img/parts/comment.png">
 		へんじする</li>
 		<li>
-		<img class="icon hvr-pulse" src="../include/img/parts/knife.png">
-		うついね</li>
+		<?php if (in_array($time_line['post_id'], $good_list) === false) { ?>
+			<form action="./main_controller.php" method="post">
+				<input type="hidden" name="action_id" value="create_good">
+				<input type="hidden" name="good_post_id" value="<?php echo $time_line['post_id']; ?>">
+				<input class="icon hvr-pulse" type="image" src="../include/img/parts/knife.png">
+			</form>うついね
+		<?php } else { ?>
+			<form action="./main_controller.php" method="post">
+				<input type="hidden" name="action_id" value="delete_good">
+				<input type="hidden" name="good_post_id" value="<?php echo $time_line['post_id']; ?>">
+				<input class="icon hvr-pulse" type="image" src="../include/img/parts/knife.png">
+			</form>うつくないね
+		<?php } ?>
+		</li>
 		<li>
 		<img class="icon hvr-pulse" src="../include/img/parts/favorite.png">
 		おきにいり</li>

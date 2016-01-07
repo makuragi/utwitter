@@ -17,7 +17,13 @@ $login_pass = '';
 // エラー保持用配列
 $errors = array();
 
-// todo session['user_id']に値を持っていた場合、main.phpに遷移させる
+// DBコネクトオブジェクト取得
+try {
+	$db = get_db_connect();
+} catch (PDOException $e) {
+	$errors[] = entity_str($e->getMessage());
+}
+
 
 if (!isPost()) {
 	include_once '../include/view/login.php';
@@ -41,7 +47,7 @@ if (!isPost()) {
 	// 入力エラーがない場合DB認証チェック
 	if (count($errors) === 0) {
 		$login = new user_login_model();
-		if ($login->loginCheck($login_id, $login_pass)) {
+		if ($login->loginCheck($db, $login_id, $login_pass)) {
 			// ログインIDを記録
 			$_SESSION['login_id'] = $login_id;
 			setcookie('login_id', $login_id, time() + (60 * 60 * 24 * 30));

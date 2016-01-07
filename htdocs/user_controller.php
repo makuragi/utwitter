@@ -21,6 +21,13 @@ $errors = array();
 // ユーザインスタンス作成
 $user = new user_model();
 
+// DBコネクトオブジェクト取得
+try {
+	$db = get_db_connect();
+} catch (PDOException $e) {
+	$errors[] = entity_str($e->getMessage());
+}
+
 if (!isPost()) {
 
 	// 画像のセッションを破棄
@@ -39,7 +46,7 @@ if (!isPost()) {
         $errors[] = 'IDは20文字以内で入力してください';
     } else if (!isOnlyAbc($_SESSION['user_id'])) {
         $errors[] = 'IDは半角英数字で入力してください';
-    } else if ($user->isUserExist($_SESSION['user_id'])) {
+    } else if ($user->isUserExist($db, $_SESSION['user_id'])) {
     	$errors[] = '入力したIDはすでに存在します';
     }
 
@@ -55,7 +62,7 @@ if (!isPost()) {
        $errors[] = 'emailアドレスを入力してください';
     } else if (!isCorrectEmail($_SESSION['user_email'])) {
         $errors[] = '正しいアドレスを入力してください';
-    } else if($user->isEmailExist($_SESSION['user_email'])) {
+    } else if($user->isEmailExist($db, $_SESSION['user_email'])) {
     	$errors[] = '入力したアドレスはすでに存在します';
     }
 
@@ -156,7 +163,7 @@ if (!isPost()) {
 	}
 
 	if (count($errors) === 0) {
-		$user->userCreate();
+		$user->userCreate($db);
 		include_once '../include/view/user_create_result.php';
 	}
 }

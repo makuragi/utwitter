@@ -6,14 +6,13 @@ class user_login_model {
 
 	/**
 	 * ユーザIDとパスワードの組み合わせでチェック
+	 * @param unknown $db
 	 * @param unknown $login_id
 	 * @param unknown $login_pass
 	 * @return boolean
 	 */
-	public function loginCheck ($login_id, $login_pass) {
+	public function loginCheck ($db, $login_id, $login_pass) {
 		try {
-			// DBコネクトオブジェクト取得
-			$db = get_db_connect();
 
 			// SQL文を作成
 			$sql = 'SELECT user_id, user_password FROM user_table

@@ -3,8 +3,12 @@
 // 関数ファイル読み込み
 require_once '../include/common/function.php';
 
+// モデルファイル読み込み
 require_once '../include/model/post_model.php';
 require_once '../include/model/main_model.php';
+require_once '../include/model/follow_model.php';
+require_once '../include/model/good_model.php';
+
 
 // ログイン情報を読み込み
 include_once '../include/common/start_session.php';
@@ -21,27 +25,35 @@ include_once '../include/common/logout.php';
 
 //エラー保持用配列
 $errors = array();
-
 // メッセージ配列
 $msg = array();
-
-// modelオブジェクト作成
-$main = new main_model();
-$post = new post_model();
-
+// 各変数宣言
 $login_id  = $_SESSION['login_id'];
+
 $color_id  = '';
 $post_body = '';
 $login_user_info = array();
 $user_list = array();
 $my_follow_list = array();
+$good_list = array();
 $all_time_line = array();
+// modelオブジェクト作成
+$main = new main_model();
+$post = new post_model();
+$follow = new follow_model();
+$good = new good_model();
+// DBコネクトオブジェクト取得
+try {
+	$db = get_db_connect();
+} catch (PDOException $e) {
+	$errors[] = entity_str($e->getMessage());
+}
 
 // ユーザ情報を取得する
-$login_user_info = $main->getMyProfile($login_id);
+$login_user_info = $main->getMyProfile($db, $login_id);
 
 // フォロー一覧を取得
-$my_follows = $main->myFollowUser($login_id);
+$my_follows = $follow->myFollowUser($db, $login_id);
 if (is_array($my_follows)) {
 	foreach($my_follows as $my_follow) {
 		$my_follow_list[] = $my_follow['follower_user_id'];
@@ -51,26 +63,27 @@ if (is_array($my_follows)) {
 $my_follow_num = count($my_follow_list);
 
 // フォロワー一覧を取得
-$my_followers = $main->myFollowerUser($login_id);
+$my_followers = $follow->myFollowerUser($db, $login_id);
 $my_follower_num = count($my_followers);
 
 // 鬱イート数一覧を取得
-$my_utweet_num = count($main->getMyTimeLine($login_id));
+$my_utweet_num = count($main->getMyTimeLine($db, $login_id));
 
+// ログインユーザがうついねを押したpost_id一覧を取得
+$good_list = $good->getGoodPostId($db, $login_id);
 
-
-// ユーザ一覧を取得。将来的にはリコメンドユーザにしたい。
-if (count($main->getUserList($login_id)) === 0) {
+// todo: ユーザ一覧を取得。将来的にはリコメンドユーザにしたい。
+if (count($main->getUserList($db, $login_id)) === 0) {
 	$msg[] = 'ユーザ一覧データがありません';
 } else {
-	$user_list = $main->getUserList($login_id);
+	$user_list = $main->getUserList($db, $login_id);
 }
 
 // タイムラインを取得します
-if (count($main->getAllTimeLine($login_id, $my_follow_list)) === 0) {
+if (count($main->getAllTimeLine($db, $login_id, $my_follow_list)) === 0) {
 	$msg[] = 'つぶやきがありません';
 } else {
-	$all_time_line = $main->getAllTimeLine($login_id, $my_follow_list);
+	$all_time_line = $main->getAllTimeLine($db, $login_id, $my_follow_list);
 }
 
 if (isPost()) {
@@ -95,18 +108,32 @@ if (isPost()) {
 		}
 
 		if (count($errors) === 0) {
-			$post->postCreate($login_id, $color_id, $post_body);
+			$post->postCreate($db, $login_id, $color_id, $post_body);
 			include_once '../include/common/goto_main.php';
 		}
 	// フォロー処理
 	} else if (getPost('action_id') === 'follow') {
 		$follower_user_id = getPost('follower_user_id');
-		$main->createFollow($login_id, $follower_user_id);
+		$follow->createFollow($db, $login_id, $follower_user_id);
 		include_once '../include/common/goto_main.php';
 	// アンフォロー処理
 	} else if (getPost('action_id') === 'unfollow') {
 		$follower_user_id = getPost('follower_user_id');
-		$main->unfollowUser($login_id, $follower_user_id);
+		$follow->unfollowUser($db, $login_id, $follower_user_id);
+		include_once '../include/common/goto_main.php';
+	// うついね処理
+	} else if (getPost('action_id') === 'create_good') {
+		$good_post_id = getPost('good_post_id');
+		if (!$good->createGood($db, $login_id, $good_post_id)) {
+			$errors[] = 'うついねに失敗しました';
+		}
+		include_once '../include/common/goto_main.php';
+	// うついねキャンセル処理(うつくないね)
+	} else if (getPost('action_id') === 'delete_good') {
+		$good_post_id = getPost('good_post_id');
+		if (!$good->deleteGood($db, $login_id, $good_post_id)) {
+			$errors[] = 'うつくないねに失敗しました';
+		}
 		include_once '../include/common/goto_main.php';
 	}
 }
