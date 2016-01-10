@@ -1,3 +1,31 @@
+<script type="text/javascript">
+$(function() {
+	//クリックイベント
+	$(".showoverlay").click(function() {
+	    //オーバーレイ用のボックスを作成
+	    $("body").append("<div id='overlay'></div>");
+	    //フェードエフェクト
+	    $("#overlay").fadeTo(500, 0.7);
+	    $("#modalbox").fadeIn(500);
+	});
+	//閉じる際のクリックイベント
+	$("#close").click(function() {
+	    $("#modalbox, #overlay").fadeOut(500, function() {
+	        $("#overlay").remove();
+	    });
+
+	});
+	$(window).resize(function() {
+	    //ボックスサイズ
+	    $("#modalbox").css({
+	        top: ($(window).height() - $("#modalbox").outerHeight()) / 2,
+	        left: ($(window).width() - $("#modalbox").outerWidth()) / 2
+	    });
+	});
+// 	$(window).resize();​
+});
+</script>
+
 <div id="all_timeline">
 <h3>うついーと一覧</h3>
 <?php foreach($all_time_line as $time_line) { ?>
@@ -27,7 +55,8 @@
 		<ul class="utweet_action">
 		<li>
 		<img class="icon hvr-pulse" src="../include/img/parts/comment.png">
-		へんじする</li>
+		<a href="#" class="showoverlay">へんじする</a>
+		</li>
 		<li>
 		<?php if (in_array($time_line['post_id'], $good_list) === false) { ?>
 			<form action="./main_controller.php" method="post">
@@ -52,3 +81,16 @@
 		</div>
 	</div>
 <?php } ?>
+
+<div id="modalbox">
+    <a href="#" id="close">x</a>
+    <form action="./main_controller" method="post">
+    <input type="hidden">
+	<textarea cols="40" rows="7"></textarea><br>
+	<input type="submit" value="返信する">
+</div>
+
+<div class="pager"></div>
+<div class="pageNum">
+    <span class="nownum"></span>/<span class="totalnum"></span>pages
+</div>

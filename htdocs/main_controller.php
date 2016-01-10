@@ -37,6 +37,7 @@ $user_list = array();
 $my_follow_list = array();
 $good_list = array();
 $all_time_line = array();
+
 // modelオブジェクト作成
 $main = new main_model();
 $post = new post_model();
@@ -59,6 +60,7 @@ if (is_array($my_follows)) {
 		$my_follow_list[] = $my_follow['follower_user_id'];
 	}
 }
+
 // フォロー数一覧を取得
 $my_follow_num = count($my_follow_list);
 
@@ -172,8 +174,6 @@ if (getGet('action_id') === 'follow') {
 	// メッセージ表示
 	include_once '../include/common/msg.php';
 }
-
-
 
 
 // フッター読み込み

@@ -50,7 +50,7 @@ input[type="text"], input[type="password"]{
 textarea{
 	-webkit-border-radius: 9px;
 	-moz-border-radius: 9px;
-	border-radius: 9px;	
+	border-radius: 9px;
 }
 
 
@@ -169,11 +169,11 @@ header{
 .my_profile{
 	width: 100%;
 	height: 150px;
-	
+
 }
 .my_profile_mypage{
 	width: 100%;
-	
+
 }
 .my_profile_image{
 	width: 78px;
@@ -191,11 +191,11 @@ header{
 }
 .my_profile_image img{
 	width: 100%;
-	height: auto;	
+	height: auto;
 }
 .my_profile_image_mypage img{
 	width: 100%;
-	height: auto;	
+	height: auto;
 }
 .my_profile_user{
 	width: 60%;
@@ -222,12 +222,12 @@ header{
 	margin: 0 auto;
 	padding: 0 5px;
 	height: auto;
-	
+
 }
 .my_profile_user_name{
 	font-size: 1.5rem;
 	width: 150px;
-	overflow: hidden; /*省略表記*/  
+	overflow: hidden; /*省略表記*/
     white-space: nowrap;  /*省略表記*/
     text-overflow: ellipsis;  /*省略表記*/
 }
@@ -305,7 +305,7 @@ header{
 	margin: 5px 0;
 	border-radius: 30px;
 	background-color: rgba(255,255,255,0.5)
-	
+
 }
 .user_profile_image{
 	width: 52px;
@@ -317,7 +317,7 @@ header{
 
 .user_profile_image img{
 	width: 100%;
-	height: auto;		
+	height: auto;
 }
 .user_profile input{
 	font-size: 5px;
@@ -376,7 +376,7 @@ header{
 	width: 70px;
 	height: auto;
 	margin: 10px 5px;
-	float: left;	
+	float: left;
 }
 
 
@@ -413,7 +413,7 @@ utweet_box:after{
 	}
 .utweet_profile_image img{
 	width: 100%;
-	height: auto;		
+	height: auto;
 }
 .utweet_info{
 	float:left;
@@ -467,4 +467,39 @@ my_post {
 	max-width:24px;
 	max-height:24px;
 }
-                                  
+
+
+.showoverlay{margin:25px;}
+
+#modalbox {
+    display:none;
+    position:absolute;
+    z-index:1000;
+    width:400px;
+    padding:20px;
+    background:#fff;
+    border:5px solid #eee;
+    border-radius:5px;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+}
+#overlay {
+    opacity:0;
+    filter: alpha(opacity=0);
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:900;
+    width:100%;
+    height:100%;
+    background:#000;
+}
+#close {
+    line-height:1;
+    font-size:14px;
+    position: absolute;
+    top:10px;
+    right:10px;
+    color:red;
+    text-decoration:none;
+}​

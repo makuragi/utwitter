@@ -98,17 +98,19 @@ class main_model {
 	 * @param unknown $login_id
 	 * @return multitype:
 	 */
-	public function getUserList($db, $login_id) {
+	public function getUserList($db, $login_id, $index = 10) {
 		try {
 
 			// SQL文を作成
 			$sql = 'SELECT user_id, user_name, user_profile, user_profile_photo FROM user_table
-			WHERE user_id <> :login_id AND user_delete_flag = 0 ORDER BY user_date DESC';
+			WHERE user_id <> :login_id AND user_delete_flag = 0 ORDER BY user_date DESC
+			LIMIT :index';
 
 			$prepare= $db->prepare($sql);
 
 			// SQL文のプレースホルダーに値をバインドする
 			$prepare->bindValue(':login_id',$login_id , PDO::PARAM_STR);
+			$prepare->bindValue(':index',$index , PDO::PARAM_INT);
 
 			$prepare->execute();
 

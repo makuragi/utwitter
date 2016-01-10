@@ -1,4 +1,6 @@
-	<div id="userList">
+</script>
+
+<div id="userList">
 	<div class="userlist_title">
 		<h3>ユーザ一覧</h3>
 	</div>
@@ -33,5 +35,6 @@
 			</form>
 		</div>
 	<?php } ?>
+	<div id="more">More...</div>
 	</div>
 </div>
