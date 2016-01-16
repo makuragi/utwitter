@@ -141,10 +141,10 @@ if (isPost()) {
 		// reply受け取り処理
 		$parent_post_id = getPost('parent_post_id');
 		$post_body = getPost('post_body');
-
-		if (!$post->createReply($login_id, $parent_post_id, '1', $post_body)) {
+		if (!$post->replyCreate($db, $login_id, $parent_post_id, '1', $post_body)) {
 			$errors[] = '返信に失敗しました';
 		}
+		include_once '../include/common/goto_main.php';
 	}
 }
 

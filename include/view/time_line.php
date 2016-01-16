@@ -70,7 +70,7 @@ $(function() {
 		<li>
 		<img class="icon hvr-pulse" src="../include/img/parts/comment.png">
 		<a href="#" class="showoverlay" id="show_over_lay" onClick="sample(
-		'<?php echo $time_line['user_id']; ?>'
+		'<?php echo $time_line['post_id']; ?>'
 		)">へんじする</a>
 		</li>
 		<li>
