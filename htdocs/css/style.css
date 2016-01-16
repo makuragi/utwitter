@@ -1,7 +1,13 @@
 @CHARSET "UTF-8";
 /* --共通設定-- */
 
+@font-face {
+  font-family: 'APJapanesefontK';
+  src: url('../../include/img/parts/APJapanesefontK.ttf') format('truetype');
+}
+
 html{
+	font-family: 'APJapanesefontK';
 	font-size: 100%;
 	background-image: url(../../include/img/parts/main_bg.jpg);
 	background-position: center;
@@ -82,12 +88,14 @@ textarea{
 
 /* --　TOP画面　-- */
 .menu{
-	border: solid 1px;
 	margin: 100px auto;
-	width: 30%;
+	width: 60%;
 	height: 100px;
 }
-
+.btn_menu{
+	width: 45%;
+	height: auto;
+}
 /* --　ユーザー登録画面　-- */
 
 .registration{
@@ -95,7 +103,30 @@ textarea{
 	padding: 20px;
 	width: 40%;
 	font-size: 16px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	text-align: center;
+	padding-top: 50px;
 }
+.registration input[type="text"], input[type="password"]{
+	margin: 15px;
+}
+.registration input[type="radio"]{
+	margin: 20px;
+}
+.registration textarea{
+	margin-top: 20px;
+}
+.registration_bottom{
+	position: relative;
+}
+.registration_bottom a{
+	position: absolute;
+	left: 50px;
+	top: 5px;
+}
+
 #pre-thumb{
     width:200px;
     overflow:hidden;
@@ -446,6 +477,7 @@ utweet_box:after{
 	font-size: 0.8rem;
 	text-align: right;
 }
+.utweet_action
 .utweet_action li{
 	font-size: 0.8rem;
 	list-style-type: none;

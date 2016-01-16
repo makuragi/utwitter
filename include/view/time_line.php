@@ -79,13 +79,13 @@ $(function() {
 				<input type="hidden" name="action_id" value="create_good">
 				<input type="hidden" name="good_post_id" value="<?php echo $time_line['post_id']; ?>">
 				<input class="icon hvr-pulse" type="image" src="../include/img/parts/knife.png">
-			</form>うついね
+			うついね</form>
 		<?php } else { ?>
 			<form action="./main_controller.php" method="post">
 				<input type="hidden" name="action_id" value="delete_good">
 				<input type="hidden" name="good_post_id" value="<?php echo $time_line['post_id']; ?>">
 				<input class="icon hvr-pulse" type="image" src="../include/img/parts/knife.png">
-			</form>うつくないね
+			うつくないね</form>
 		<?php } ?>
 		</li>
 		<li>
