@@ -1,13 +1,24 @@
 <script type="text/javascript">
+
+/**
+ * モーダルウィンドウformを出現させるメソッド
+ */
+var sample = function (parent_post_id) {
+	$("#parent_post_id").val(parent_post_id);
+
+    //オーバーレイ用のボックスを作成
+    $("body").append("<div id='overlay'></div>");
+    //フェードエフェクト
+    $("#overlay").fadeTo(500, 0.7);
+    $("#modalbox").fadeIn(500);
+
+    //ボックスサイズ
+    $("#modalbox").css({
+        top: ($(window).height() - $("#modalbox").outerHeight()) / 2,
+        left: ($(window).width() - $("#modalbox").outerWidth()) / 2
+    });
+}
 $(function() {
-	//クリックイベント
-	$(".showoverlay").click(function() {
-	    //オーバーレイ用のボックスを作成
-	    $("body").append("<div id='overlay'></div>");
-	    //フェードエフェクト
-	    $("#overlay").fadeTo(500, 0.7);
-	    $("#modalbox").fadeIn(500);
-	});
 	//閉じる際のクリックイベント
 	$("#close").click(function() {
 	    $("#modalbox, #overlay").fadeOut(500, function() {
@@ -16,14 +27,17 @@ $(function() {
 
 	});
 	$(window).resize(function() {
+		console.log(window.height);
+		console.log($("#modalbox").outerHeight());
+
 	    //ボックスサイズ
 	    $("#modalbox").css({
 	        top: ($(window).height() - $("#modalbox").outerHeight()) / 2,
 	        left: ($(window).width() - $("#modalbox").outerWidth()) / 2
 	    });
 	});
-// 	$(window).resize();​
 });
+
 </script>
 
 <div id="all_timeline">
@@ -55,7 +69,9 @@ $(function() {
 		<ul class="utweet_action">
 		<li>
 		<img class="icon hvr-pulse" src="../include/img/parts/comment.png">
-		<a href="#" class="showoverlay">へんじする</a>
+		<a href="#" class="showoverlay" id="show_over_lay" onClick="sample(
+		'<?php echo $time_line['user_id']; ?>'
+		)">へんじする</a>
 		</li>
 		<li>
 		<?php if (in_array($time_line['post_id'], $good_list) === false) { ?>
@@ -81,15 +97,16 @@ $(function() {
 		</div>
 	</div>
 <?php } ?>
-
-<div id="modalbox">
-    <a href="#" id="close">x</a>
-    <form action="./main_controller" method="post">
-    <input type="hidden">
-	<textarea cols="40" rows="7"></textarea><br>
-	<input type="submit" value="返信する">
-</div>
-
+	<!-- モーダルウィンドウ -->
+	<div id="modalbox">
+	    <a href="#" id="close">x</a>
+	    <form action="./main_controller.php" method="post">
+		    <input type="hidden" name="action_id" value="reply">
+		    <input type="hidden" id="parent_post_id" name="parent_post_id">
+			<textarea id="post_body" name="post_body" cols="40" rows="7"></textarea><br>
+			<input type="submit" value="返信する">
+		</form>
+	</div>
 <div class="pager"></div>
 <div class="pageNum">
     <span class="nownum"></span>/<span class="totalnum"></span>pages
