@@ -88,9 +88,11 @@ $(function() {
 			うつくないね</form>
 		<?php } ?>
 		</li>
+		<!-- 
 		<li>
 		<img class="icon hvr-pulse" src="../include/img/parts/favorite.png">
 		おきにいり</li>
+		 -->
 		</ul>
 		</div>
 		</div>
