@@ -19,3 +19,4 @@
 	<div class="home_btn">
 	<input type="button" value="HOME" onClick="location='./index.php'">
 	</div>
+	<div><h1>うついったー</h1></div>
