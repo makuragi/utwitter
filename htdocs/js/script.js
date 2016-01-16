@@ -18,8 +18,7 @@ $(function($) {
 
 // todo: 画像変更の時だけという条件処理に変える必要がある
 $(function() {
-	if ($('#getfile').val() === undefined) {
-	} else {
+	if ($('#getfile').val() !== undefined) {
 		// 画像を表示する
 		var file = document.querySelector('#getfile');
 
