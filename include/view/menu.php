@@ -9,8 +9,8 @@
 <body>
 	<div class="container">
 	<div class="menu">
-	<a href="./user_controller.php">ユーザ登録</a>
-	<a href="./login_controller.php">ログイン</a>
+	<a href="./user_controller.php"><img class="btn_menu hvr-pulse" src="../include/img/parts/btn_regist.png" ></a>
+	<a href="./login_controller.php"><img class=" btn_menu hvr-pulse" src="../include/img/parts/btn_login.png" ></a>
 	</div>
 	</div>
 </body>
