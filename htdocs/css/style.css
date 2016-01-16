@@ -175,6 +175,11 @@ header{
 .top_wrapper h1{
 	margin: 20px auto;
 	font-size: 3rem;
+	text-shadow:
+		-2px -2px #FFF,
+		2px -2px #FFF,
+		-2px 2px #FFF,
+		2px 2px #FFF;
 }
 .home_btn{
 	position: absolute;
@@ -494,6 +499,7 @@ utweet_box:after{
 	font-size: 0.8rem;
 	list-style-type: none;
 	display: inline-block;
+	float: left;
 }
 
 my_post {
