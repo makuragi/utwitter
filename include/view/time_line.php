@@ -44,7 +44,7 @@ $(function() {
 <div id="all_timeline">
 <h3>うついーと一覧</h3>
 <?php foreach($all_time_line as $time_line) { ?>
-	<div class="time_line" id="<?php echo $time_line['parent_post_id'];?>">
+	<div class="time_line">
 		<div class="utweet_box">
 		<div class="utweet_profile_image hvr-glow">
 			<a href="./profile_controller.php?action_id=profile&user_profile_id=<?php echo $time_line['user_id']; ?>">
@@ -67,14 +67,13 @@ $(function() {
 		<?php echo $time_line['post_body']; ?>
 		</div>
 		<div>
-		<ul class="utweet_action">
-		<li>
+		<div class="btn-actions">
 		<img class="icon hvr-pulse" src="../include/img/parts/comment.png">
 		<a href="#" class="showoverlay" id="show_over_lay" onClick="sample(
 		'<?php echo $time_line['post_id']; ?>'
 		)">へんじする</a>
-		</li>
-		<li>
+		</div>
+		<div class="btn-actions">
 		<?php if (in_array($time_line['post_id'], $good_list) === false) { ?>
 			<form action="./main_controller.php" method="post">
 				<input type="hidden" name="action_id" value="create_good">
@@ -88,13 +87,18 @@ $(function() {
 				<input class="icon hvr-pulse" type="image" src="../include/img/parts/knife.png">
 			うつくないね</form>
 		<?php } ?>
+<!-- <<<<<<< HEAD -->
 		</li>
 		<!--
+=======
+		</div>
+		<!--
+>>>>>>> af84629151c9c24f290c760d092681c6acf8dd3b
 		<li>
 		<img class="icon hvr-pulse" src="../include/img/parts/favorite.png">
 		おきにいり</li>
 		 -->
-		</ul>
+
 		</div>
 		</div>
 		</div>
