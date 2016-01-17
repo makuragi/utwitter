@@ -17,8 +17,8 @@ class post_model {
 			$post_date = date('Y-m-d H:i:s');
 
 			// SQL文を作成
-			$sql = 'INSERT INTO post_table (user_id, color_id, post_body, post_date)
-			VALUES (:user_id, :color_id, :post_body, :post_date);';
+			$sql = 'INSERT INTO post_table (user_id, color_id, post_body, post_date, update_at)
+			VALUES (:user_id, :color_id, :post_body, :post_date, :update_at);';
 
 			$prepare = $db->prepare($sql);
 
@@ -26,6 +26,8 @@ class post_model {
 			$prepare->bindValue(':color_id', intval($color_id), PDO::PARAM_INT);
 			$prepare->bindValue(':post_body', $post_body, PDO::PARAM_STR);
 			$prepare->bindValue(':post_date', $post_date, PDO::PARAM_STR);
+			$prepare->bindValue(':update_at', $post_date, PDO::PARAM_STR);
+
 
 			if (!$prepare->execute()) {
 				$errors[] = 'DB登録処理に失敗しました';
@@ -36,9 +38,20 @@ class post_model {
 		}
 	}
 
+	/**
+	 * リプライ処理をおこなう
+	 * @param unknown $db
+	 * @param unknown $user_id
+	 * @param unknown $parent_post_id
+	 * @param unknown $color_id
+	 * @param unknown $post_body
+	 */
 	public function replyCreate($db, $user_id, $parent_post_id, $color_id, $post_body) {
 
 		try {
+
+			// トランザクションを開始する
+			$db->beginTransaction();
 
 			// 現在日時を取得
 			$cuttent_time = date('Y-m-d H:i:s');
@@ -58,6 +71,7 @@ class post_model {
 
 			if (!$prepare->execute()) {
 				$errors[] = 'DB登録処理に失敗しました';
+				return false;
 			}
 
 			// 結果セットを開放
@@ -74,9 +88,16 @@ class post_model {
 
 			if (!$prepare->execute()) {
 				$errors[] = 'DB登録処理に失敗しました';
+				return false;
 			}
 
+			// コミット
+			$db->commit();
+
+			return true;
+
 		} catch (PDOException $e) {
+			$db->rollBack();
 			$errors[] = entity_str($e->getMessage());
 		}
 	}

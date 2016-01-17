@@ -435,6 +435,9 @@ header{
 	text-align: left;
 	margin: 0 auto;
 }
+#time_line {
+	display: box;
+}
 
 .utweet_box{
 	clear: both;
@@ -517,7 +520,6 @@ my_post {
 	max-width:24px;
 	max-height:24px;
 }
-
 
 .showoverlay{margin:25px;}
 

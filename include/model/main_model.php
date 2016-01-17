@@ -74,9 +74,9 @@ class main_model {
 
 			// SQL文を作成
 			$sql = 'SELECT user.user_id, user.user_name, user.user_profile_photo, post.post_id,
-			post.post_body, post.post_date FROM user_table as user INNER JOIN post_table as post
+			post.parent_post_id, post.post_body, post.post_date FROM user_table as user INNER JOIN post_table as post
 			ON user.user_id = post.user_id WHERE user.user_id IN ('. $display_user .')
-			ORDER BY post.post_date DESC' ;
+			ORDER BY post.update_at DESC, post.post_id';
 
 			$prepare= $db->prepare($sql);
 

@@ -19,6 +19,7 @@ var sample = function (parent_post_id) {
     });
 }
 $(function() {
+
 	//閉じる際のクリックイベント
 	$("#close").click(function() {
 	    $("#modalbox, #overlay").fadeOut(500, function() {
@@ -43,7 +44,7 @@ $(function() {
 <div id="all_timeline">
 <h3>うついーと一覧</h3>
 <?php foreach($all_time_line as $time_line) { ?>
-	<div class="time_line">
+	<div class="time_line" id="<?php echo $time_line['parent_post_id'];?>">
 		<div class="utweet_box">
 		<div class="utweet_profile_image hvr-glow">
 			<a href="./profile_controller.php?action_id=profile&user_profile_id=<?php echo $time_line['user_id']; ?>">
@@ -88,7 +89,7 @@ $(function() {
 			うつくないね</form>
 		<?php } ?>
 		</li>
-		<!-- 
+		<!--
 		<li>
 		<img class="icon hvr-pulse" src="../include/img/parts/favorite.png">
 		おきにいり</li>
