@@ -66,14 +66,13 @@ $(function() {
 		<?php echo $time_line['post_body']; ?>
 		</div>
 		<div>
-		<ul class="utweet_action">
-		<li>
+		<div class="btn-actions">
 		<img class="icon hvr-pulse" src="../include/img/parts/comment.png">
 		<a href="#" class="showoverlay" id="show_over_lay" onClick="sample(
 		'<?php echo $time_line['user_id']; ?>'
 		)">へんじする</a>
-		</li>
-		<li>
+		</div>
+		<div class="btn-actions">
 		<?php if (in_array($time_line['post_id'], $good_list) === false) { ?>
 			<form action="./main_controller.php" method="post">
 				<input type="hidden" name="action_id" value="create_good">
@@ -87,13 +86,13 @@ $(function() {
 				<input class="icon hvr-pulse" type="image" src="../include/img/parts/knife.png">
 			うつくないね</form>
 		<?php } ?>
-		</li>
+		</div>
 		<!-- 
 		<li>
 		<img class="icon hvr-pulse" src="../include/img/parts/favorite.png">
 		おきにいり</li>
 		 -->
-		</ul>
+		
 		</div>
 		</div>
 		</div>

@@ -498,8 +498,12 @@ utweet_box:after{
 .utweet_action li{
 	font-size: 0.8rem;
 	list-style-type: none;
-	display: inline-block;
 	float: left;
+}
+.btn-actions{
+	margin-top: 5px;
+	float: left;
+	width: 150px;
 }
 
 my_post {

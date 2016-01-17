@@ -50,17 +50,15 @@
 		<?php echo $post['post_body']; ?>
 		</div>
 		<div>
-		<ul class="utweet_action">
-		<li>
+		<div class="btn-actions">
 		<img class="icon hvr-pulse" src="../include/img/parts/comment.png">
-		へんじする</li>
-		<li>
+		へんじする
+		</div>
+		<div class="btn-actions">
 		<img class="icon hvr-pulse" src="../include/img/parts/knife.png">
-		うついね</li>
-		<li>
-		<img class="icon hvr-pulse" src="../include/img/parts/favorite.png">
-		おきにいり</li>
-		</ul>
+		うついね
+		</div>
+
 
 		</div>
 		</div>
