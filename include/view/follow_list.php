@@ -9,12 +9,20 @@
  -->
 
 <div class="right_container">
-	<div>
+	<h2>あなたがフォローしている人たち</h2>
 	<?php foreach($my_follows as $my_follow_user) { ?>
+	<div class="follow_list_box">
+	<div class="follow_list_box_img">
 		<img src="<?php echo $my_follow_user['user_profile_photo']; ?>">
-			<a href="./profile_controller.php?action_id=profile&user_profile_id=<?php echo $my_follow_user['user_id']; ?>"><?php echo $my_follow_user['user_name']; ?></a>&nbsp;
-			<?php echo $my_follow_user['user_name']; ?>
-		<?php echo $my_follow_user['user_profile']; ?>
-	<?php } ?>
 	</div>
+	<div class="follow_list_box_text">
+			<a href="./profile_controller.php?action_id=profile&user_profile_id=<?php echo $my_follow_user['user_id']; ?>">
+			<br><?php echo $my_follow_user['user_name']; ?></a>
+			<br><?php echo $my_follow_user['user_name']; ?>
+			<br><?php echo $my_follow_user['user_profile']; ?>
+	</div>
+	</div>
+	<?php } ?>
+	
+</div>
 </div>

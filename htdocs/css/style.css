@@ -506,6 +506,25 @@ utweet_box:after{
 	width: 150px;
 }
 
+.follow_list_box{
+	width: 140px;
+	height: 140px;
+	margin: 50px;
+	float: left;
+}
+.follow_list_box_img{
+	width: 140px;
+	height: 140px;
+	overflow: hidden;
+}
+.follow_list_box img{
+	width: 100%;
+	height: auto;
+}
+.follow_list_box_text{
+	width: 140px;
+	height: 140px;
+}
 my_post {
 	width:450px;
 }

@@ -9,12 +9,19 @@
  -->
 
 <div class="right_container">
-	<div>
+	<h2>あなたをフォロしている人たち</h2>
 	<?php foreach($my_followers as $my_follower_user) { ?>
+	<div class="follow_list_box">
+	<div class="follow_list_box_img">
 		<img src="<?php echo $my_follower_user['user_profile_photo']; ?>">
-		<?php echo $my_follower_user['user_id']; ?>
-		<a href="./profile_controller.php?action_id=profile&user_profile_id=<?php echo $my_follower_user['user_id']; ?>"><?php echo $my_follower_user['user_name']; ?></a>&nbsp;
-		<?php echo $my_follower_user['user_profile']; ?>
-	<?php } ?>
 	</div>
+	<div class="follow_list_box_text">
+		<?php echo $my_follower_user['user_id']; ?>
+		<br><a href="./profile_controller.php?action_id=profile&user_profile_id=<?php echo $my_follower_user['user_id']; ?>">
+		<br><?php echo $my_follower_user['user_name']; ?></a>
+		<br><?php echo $my_follower_user['user_profile']; ?>
+	</div>
+	</div>
+	<?php } ?>
+</div>
 </div>
