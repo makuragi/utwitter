@@ -9,7 +9,7 @@
  -->
 
 <div class="right_container">
-	<h2>あなたをフォロしている人たち</h2>
+	<h2>あなたをフォローしている人たち</h2>
 	<?php foreach($my_followers as $my_follower_user) { ?>
 	<div class="follow_list_box">
 	<div class="follow_list_box_img">

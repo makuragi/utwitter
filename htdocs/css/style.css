@@ -508,9 +508,10 @@ utweet_box:after{
 
 .follow_list_box{
 	width: 140px;
-	height: 140px;
+	height: 350px;
 	margin: 50px;
 	float: left;
+	background-color: rgba(255,255,255,0.6);
 }
 .follow_list_box_img{
 	width: 140px;
