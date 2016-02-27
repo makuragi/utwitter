@@ -85,9 +85,6 @@ echo $this->Form->end(array('label' => '投稿', 'class' => 'btn btn-primary btn
 <!--投稿一覧-->
 <?php foreach ($post_list as $post): ?>
 <div class="panel panel-default utweet" id="<?php echo $post['Post']['id'];?>">
-<?php if ($post['Post']['parent_post_id'] !== null): ?>
-  <div class="parent-post-id" id="<?php echo $post['Post']['id'];?>" style="display: none;"><?php echo $post['Post']['parent_post_id']; ?></div>
-<?php endif; ?>
     <ul class="list-inline utweet-header">
      <li>
        <?php echo $this->Html->image($post['User']['profile_photo'], array('class' => 'utweet-img img-rounded')); ?>
@@ -120,6 +117,38 @@ echo $this->Html->link($post['User']['id'], array(
 </div> <!--	panel -->
 	  <!-- reply-modal -->
 <?php endforeach; ?>
+
+
+<!-- reply-begin -->
+<?php foreach ($reply_list as $reply):?>
+<div class="reply" id="<?php echo $reply['Post']['parent_post_id']?>" style="display: none;">
+  <ul>
+    <li><?php echo $this->Html->image($post['User']['profile_photo'], array('class' => 'utweet-img img-rounded')); ?></li>
+    <li>
+<?php 
+echo $this->Html->link($reply['User']['id'], array(
+	'controller' => 'users',
+	'action' => 'detail',
+	$post['User']['id']
+	));
+?>
+    </li>
+    <li><?php echo $reply['User']['name']; ?></li>
+    <li><?php echo $reply['Post']['body']; ?></li>
+    <li><?php echo $reply['Post']['created']); ?></li>
+    <li>
+	    <button class="btn btn-primary reply-btn" data-toggle="modal" data-target="#reply-modal">
+          返信する
+        </button>
+    </li>
+    <li>うついね</li>
+  </ul>
+</div>
+<?php endforeach; ?>
+<!-- reply-end -->
+
+
+
     <div class="modal" role="dialog" aria-hidden="true" id="reply-modal">
       <div class="modal-dialog">
         <div class="modal-content">
