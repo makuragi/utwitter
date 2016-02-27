@@ -87,7 +87,6 @@ $(function() {
 				<input class="icon hvr-pulse" type="image" src="../include/img/parts/knife.png">
 			うつくないね</form>
 		<?php } ?>
-<!-- <<<<<<< HEAD -->
 		</li>
 		<!--
 =======

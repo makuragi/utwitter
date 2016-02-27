@@ -1,0 +1,19 @@
+.post-button{
+  margin-top: 10px;
+}
+.post-form {
+  height: 10px;
+}
+
+.utweet {
+  word-break: break-all;
+}
+.utweet-header{
+  margin-bottom: 0px;
+}
+.utweet-img {
+  height: 60px;
+  width: 60px;
+  margin-top: -10px;
+  margin-left: -10px;
+}
