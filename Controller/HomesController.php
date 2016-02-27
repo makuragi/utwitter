@@ -42,7 +42,7 @@ class HomesController extends AppController {
 		$post_list = $this->Post->find('all', array(
 			'conditions' => array(
 				'User.id' => array_merge($follow_user_ids, array($this->Auth->User('id'))),
-				'Post.parent_post_id' => 'null',
+				'Post.parent_post_id' => null,
 				'User.delete_flag' => '0',
 				'Post.delete_flag' => '0'
 			),
@@ -63,7 +63,7 @@ class HomesController extends AppController {
 		// うつぶやき一覧(返信)を取得
 		$reply_list = $this->Post->find('all', array(
 				'conditions' => array(
-						'Post.parent_post_id !=' => 'null',
+						'Post.parent_post_id !=' => null,
 						'User.delete_flag' => '0',
 						'Post.delete_flag' => '0'
 				),
