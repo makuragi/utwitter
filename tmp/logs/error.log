@@ -53988,3 +53988,57 @@ Request URL: /css/less/type.less
 Stack Trace:
 #0 /vagrant/utwitter/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2016-02-27 21:40:50 Error: [MissingControllerException] Controller class UtwitterController could not be found.
+Exception Attributes: array (
+  'class' => 'UtwitterController',
+  'plugin' => NULL,
+)
+Request URL: /utwitter/webroot
+Stack Trace:
+#0 /vagrant/utwitter/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-02-27 21:41:16 Error: [MissingControllerException] Controller class UtwitterController could not be found.
+Exception Attributes: array (
+  'class' => 'UtwitterController',
+  'plugin' => NULL,
+)
+Request URL: /utwitter
+Stack Trace:
+#0 /vagrant/utwitter/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-02-27 21:41:21 Error: [MissingControllerException] Controller class UtwitterController could not be found.
+Exception Attributes: array (
+  'class' => 'UtwitterController',
+  'plugin' => NULL,
+)
+Request URL: /utwitter
+Stack Trace:
+#0 /vagrant/utwitter/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-02-27 21:41:45 Error: [MissingControllerException] Controller class UtwitterController could not be found.
+Exception Attributes: array (
+  'class' => 'UtwitterController',
+  'plugin' => NULL,
+)
+Request URL: /utwitter/webroot/
+Stack Trace:
+#0 /vagrant/utwitter/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-02-27 21:42:00 Error: [MissingControllerException] Controller class UtwitterController could not be found.
+Exception Attributes: array (
+  'class' => 'UtwitterController',
+  'plugin' => NULL,
+)
+Request URL: /utwitter/user
+Stack Trace:
+#0 /vagrant/utwitter/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-02-27 21:42:04 Error: [MissingControllerException] Controller class UtwitterController could not be found.
+Exception Attributes: array (
+  'class' => 'UtwitterController',
+  'plugin' => NULL,
+)
+Request URL: /utwitter/user
+Stack Trace:
+#0 /vagrant/utwitter/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
