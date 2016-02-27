@@ -123,13 +123,13 @@ echo $this->Html->link($post['User']['id'], array(
 <?php foreach ($reply_list as $reply):?>
 <div class="reply" id="<?php echo $reply['Post']['parent_post_id']?>" style="display: none;">
   <ul>
-    <li><?php echo $this->Html->image($post['User']['profile_photo'], array('class' => 'utweet-img img-rounded')); ?></li>
+    <li><?php echo $this->Html->image($reply['User']['profile_photo'], array('class' => 'utweet-img img-rounded')); ?></li>
     <li>
 <?php 
 echo $this->Html->link($reply['User']['id'], array(
 	'controller' => 'users',
 	'action' => 'detail',
-	$post['User']['id']
+	$reply['User']['id']
 	));
 ?>
     </li>
