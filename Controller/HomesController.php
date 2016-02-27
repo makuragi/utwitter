@@ -38,10 +38,11 @@ class HomesController extends AppController {
 				'User.profile'
 			)
 		));
-		// うつぶやき一覧を取得
+		// うつぶやき一覧(返信以外)を取得
 		$post_list = $this->Post->find('all', array(
 			'conditions' => array(
 				'User.id' => array_merge($follow_user_ids, array($this->Auth->User('id'))),
+				'Post.parent_post_id' => 'null',
 				'User.delete_flag' => '0',
 				'Post.delete_flag' => '0'
 			),
@@ -59,12 +60,34 @@ class HomesController extends AppController {
 			)
 		));
 
+		// うつぶやき一覧(返信)を取得
+		$reply_list = $this->Post->find('all', array(
+				'conditions' => array(
+						'Post.parent_post_id !=' => 'null',
+						'User.delete_flag' => '0',
+						'Post.delete_flag' => '0'
+				),
+				'fields' => array(
+						'User.id',
+						'User.name',
+						'User.profile_photo',
+						'Post.id',
+						'Post.parent_post_id',
+						'Post.created',
+						'Post.body'
+				),
+				'order' => array(
+						'Post.created'
+				)
+		));
+
 		$this->set('follow_user_ids', $follow_user_ids);
 		$this->set('post_count', $post_count);
 		$this->set('follow_count', $follow_count);
 		$this->set('follower_count', $follower_count);
 		$this->set('user_list', $user_list);
 		$this->set('post_list', $post_list);
+		$this->set('reply_list', $reply_list);
 	}
 
 	public function postCreate() {

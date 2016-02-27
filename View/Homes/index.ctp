@@ -98,7 +98,7 @@ echo $this->Html->link($post['User']['id'], array(
 	'controller' => 'users',
 	'action' => 'detail',
 	$post['User']['id']
-	)); 
+	));
 ?>
 	  </li> 
 	  <li><?php echo h($post['User']['name']); ?></li>
