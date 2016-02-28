@@ -90,14 +90,14 @@ echo $this->Form->end(array('label' => '投稿', 'class' => 'btn btn-primary btn
        <?php echo $this->Html->image($post['User']['profile_photo'], array('class' => 'utweet-img img-rounded')); ?>
      </li>
      <li>
-<?php 
+<?php
 echo $this->Html->link($post['User']['id'], array(
 	'controller' => 'users',
 	'action' => 'detail',
 	$post['User']['id']
 	));
 ?>
-	  </li> 
+	  </li>
 	  <li><?php echo h($post['User']['name']); ?></li>
 	</ul>
   <div class="panel-body">
@@ -112,7 +112,15 @@ echo $this->Html->link($post['User']['id'], array(
           返信する
         </button>
       </li>
-	  <li>うついね</li>
+	  <li>
+<?php
+echo $this->Html->link(__('うついね'), array(
+	'controller' => 'goods',
+	'action' => 'good',
+	$post['Post']['id']
+	));
+?>
+	  </li>
 	</ul>
 </div> <!--	panel -->
 	  <!-- reply-modal -->
@@ -121,7 +129,7 @@ echo $this->Html->link($post['User']['id'], array(
 
 <!-- reply-begin -->
 <?php foreach ($reply_list as $reply):?>
-<div class="reply" id="<?php echo $reply['Post']['parent_post_id']?>" style="display: none;">
+<div class="reply <?php echo $reply['Post']['parent_post_id']; ?>" id="<?php echo $reply['Post']['id']; ?>" style=" border: solid 1px; display: none;">
   <ul>
     <li><?php echo $this->Html->image($reply['User']['profile_photo'], array('class' => 'utweet-img img-rounded')); ?></li>
     <li>
@@ -135,13 +143,25 @@ echo $this->Html->link($reply['User']['id'], array(
     </li>
     <li><?php echo $reply['User']['name']; ?></li>
     <li><?php echo $reply['Post']['body']; ?></li>
-    <li><?php echo $reply['Post']['created']); ?></li>
+    <li><?php echo $reply['Post']['created']; ?></li>
+    <!-- 値を渡す-begin -->
+	<div class="user-id" style="display: none;"><?php echo $reply['User']['id']; ?></div>
+	<div class="post-id" style="display: none;"><?php echo $reply['Post']['id']; ?></div>
+    <!-- 値を渡す-end -->
     <li>
 	    <button class="btn btn-primary reply-btn" data-toggle="modal" data-target="#reply-modal">
           返信する
         </button>
     </li>
-    <li>うついね</li>
+    <li>
+<?php
+echo $this->Html->link(__('うついね'), array(
+	'controller' => 'goods',
+	'action' => 'good',
+	$reply['Post']['id']
+	));
+?>
+    </li>
   </ul>
 </div>
 <?php endforeach; ?>

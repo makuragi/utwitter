@@ -44,8 +44,6 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <?php echo $this->Html->script('jquery-1.12.0'); ?>
     <?php echo $this->Html->script('bootstrap.min'); ?>
-    <?php echo $this->Html->script('utwitter'); ?>
-    <?php echo $this->Html->script('home'); ?>
     <?php echo $this->Html->script('script'); ?>
 </body>
 </html>

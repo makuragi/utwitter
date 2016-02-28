@@ -6,7 +6,13 @@
 }
 
 .utweet {
+  transition: 0.3s ease;
+  cursor: pointer;
   word-break: break-all;
+}
+.utweet:hover {
+  box-shadow: 0 0 0 3px #000000;
+  transition: 1s ease;
 }
 .utweet-header{
   margin-bottom: 0px;

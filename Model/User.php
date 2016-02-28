@@ -16,8 +16,14 @@ class User extends AppModel {
 		'FollowReceived' => array(
 			'className' => 'Follow',
 			'foreignKey' => 'follower_user_id'
+		),
+		'Good' => array(
+			'className' => 'Good',
+			'foreignKey' => 'user_id'
 		)
 	);
+
+
 
 
 	public $validate = array(
