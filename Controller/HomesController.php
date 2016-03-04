@@ -3,7 +3,7 @@
 class HomesController extends AppController {
 
 	// モデル使用定義
-	public $uses = array('User', 'Post', 'Follow');
+	public $uses = array('User', 'Post', 'Follow', 'Good');
 
 	public function index() {
 
@@ -25,6 +25,17 @@ class HomesController extends AppController {
 			)
 		));
 
+		// うついねしたポストIDを取得
+		$good_post_ids = $this->Good->find('list', array(
+			'conditions' => array(
+				'Good.user_id' => $this->Auth->User('id'),
+				'Good.delete_flag' => '0'
+			),
+			'fields' => array(
+				'Good.post_id'
+			)
+		));
+
 		// ユーザ一覧を取得
 		$user_list = $this->User->find('all', array(
 			'conditions' => array(
@@ -38,13 +49,17 @@ class HomesController extends AppController {
 				'User.profile'
 			)
 		));
+
+		// 取ってくるデータの階層を指定(objを使い続ける限り固定)
+		$this->Post->recursive = 2;
+
 		// うつぶやき一覧(返信以外)を取得
 		$post_list = $this->Post->find('all', array(
 			'conditions' => array(
 				'User.id' => array_merge($follow_user_ids, array($this->Auth->User('id'))),
 				'Post.parent_post_id' => null,
 				'User.delete_flag' => '0',
-				'Post.delete_flag' => '0'
+				'Post.delete_flag' => '0',
 			),
 			'fields' => array(
 				'User.id',
@@ -59,7 +74,6 @@ class HomesController extends AppController {
 				'Post.created DESC'
 			)
 		));
-
 		// うつぶやき一覧(返信)を取得
 		$reply_list = $this->Post->find('all', array(
 				'conditions' => array(
@@ -82,6 +96,7 @@ class HomesController extends AppController {
 		));
 
 		$this->set('follow_user_ids', $follow_user_ids);
+		$this->set('good_post_ids', $good_post_ids);
 		$this->set('post_count', $post_count);
 		$this->set('follow_count', $follow_count);
 		$this->set('follower_count', $follower_count);

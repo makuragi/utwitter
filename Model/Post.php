@@ -11,7 +11,14 @@ class Post extends AppModel {
 	public $hasMany = array(
 		'Good' => array(
 			'className' => 'Good',
-			'foreignKey' => 'post_id'
+			'foreignKey' => 'post_id',
+			'conditions' => array(
+				'delete_flag' => '0'
+			),
+			'fields' => array(
+				'post_id',
+				'user_id',
+			)
 		)
 	);
 }

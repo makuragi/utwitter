@@ -4,28 +4,6 @@ App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 
 class User extends AppModel {
 
-	public $hasMany = array(
-		'Post' => array(
-			'className' => 'Post',
-			'foreignKey' => 'user_id'
-		),
-		'FollowSent' => array(
-			'className' => 'Follow',
-			'foreignKey' => 'follow_user_id'
-		),
-		'FollowReceived' => array(
-			'className' => 'Follow',
-			'foreignKey' => 'follower_user_id'
-		),
-		'Good' => array(
-			'className' => 'Good',
-			'foreignKey' => 'user_id'
-		)
-	);
-
-
-
-
 	public $validate = array(
 		'id' => array (
 			'idRule1' => array (

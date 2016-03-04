@@ -114,13 +114,25 @@ echo $this->Html->link($post['User']['id'], array(
       </li>
 	  <li>
 <?php
-echo $this->Html->link(__('うついね'), array(
-	'controller' => 'goods',
-	'action' => 'good',
-	$post['Post']['id']
-	));
+if (!in_array($post['Post']['id'], $good_post_ids)) {
+	echo $this->Html->link(__('うついね'), array(
+		'controller' => 'goods',
+		'action' => 'good',
+		$post['Post']['id']
+		));
+} else {
+		echo $this->Html->link(__('うつくないね'), array(
+		'controller' => 'goods',
+		'action' => 'bad',
+		$post['Post']['id']
+		));
+}
 ?>
 	  </li>
+    <!-- うついね件数 -->
+      <li>
+<?php echo count($post['Good']); ?>
+      </li>
 	</ul>
 </div> <!--	panel -->
 	  <!-- reply-modal -->
@@ -155,12 +167,24 @@ echo $this->Html->link($reply['User']['id'], array(
     </li>
     <li>
 <?php
-echo $this->Html->link(__('うついね'), array(
-	'controller' => 'goods',
-	'action' => 'good',
-	$reply['Post']['id']
-	));
+if (!in_array($reply['Post']['id'], $good_post_ids)) {
+	echo $this->Html->link(__('うついね'), array(
+		'controller' => 'goods',
+		'action' => 'good',
+		$reply['Post']['id']
+		));
+} else {
+		echo $this->Html->link(__('うつくないね'), array(
+		'controller' => 'goods',
+		'action' => 'bad',
+		$reply['Post']['id']
+		));
+}
 ?>
+    </li>
+    <!-- うついね件数 -->
+    <li>
+<?php echo count($reply['Good']); ?>
     </li>
   </ul>
 </div>
