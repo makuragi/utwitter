@@ -15,11 +15,34 @@ $(function(){
         replyApply($(this).attr("id"));
     });
 
+    // ajaxで返信をもってくる
+    $(".utweet").click(function(){
+    	var parent_post_id = $(this).attr("id");
+    	console.log(parent_post_id);
+    	$.ajax ({
+    		type: 'POST',
+    		url: 'http://makuragi.com/posts/reply_list',
+    		dataType: "json",
+    		data: {
+    			'id': parent_post_id
+    		},
+    		success: function(data) {
+    			console.log(data);
+    		},
+    		error: function(XMLHttpRequest, textStatus, errorThrown){
+    	        console.log(XMLHttpRequest); // XMLHttpRequestオブジェクト
+    	        console.log(textStatus); // status は、リクエスト結果を表す文字列
+    	        console.log(errorThrown); // errorThrown は、例外オブジェクト
+    		}
+    	});
+    });
+
     // モーダルに値をセット
     $(".reply-btn").click(function(){
         var user_id = $(this).parent().siblings(".user-id").text();
         var post_id = $(this).parent().siblings(".post-id").text();
         $(".modal-title").text('reply to ' + user_id);
+        $(".post-body").text(' @' + user_id);
         $("#parent-post-id").val(post_id);
     });
 

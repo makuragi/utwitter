@@ -77,7 +77,7 @@ echo $this->Form->create('Post', array('type' => 'post', 'url' => 'postCreate'))
 // ユーザID
 echo $this->Form->hidden('user_id', array('value' => AuthComponent::user('id')));
 // 投稿内容
-echo $this->Form->input('body', array('type' => 'textarea', 'rows' => '1', 'maxlength' => '140', 'placeholder' => 'うつぶきましょう', 'label' => false, 'class' => 'post-form form-control'));
+echo $this->Form->input('body', array('type' => 'textarea', 'rows' => '1', 'maxlength' => '140', 'placeholder' => 'うつぶきましょう', 'label' => false, 'class' => 'post-form form-control auto-link'));
 
 echo $this->Form->end(array('label' => '投稿', 'class' => 'btn btn-primary btn-lg btn-block post-button'));
 ?>
@@ -101,7 +101,12 @@ echo $this->Html->link($post['User']['id'], array(
 	  <li><?php echo h($post['User']['name']); ?></li>
 	</ul>
   <div class="panel-body">
+<?php $post['Post']['body'] = preg_replace('/(^|\s)@([a-z0-9_]+)/i',
+                      '$1<a href="http://makuragi.com/users/detail/$2">@$2</a>',
+                       $post['Post']['body']);
+?>
 	<p><?php echo $post['Post']['body']; ?></p>
+
   </div> <!-- panel-body -->
 	<ul class="list-inline text-right">
 	  <li><?php echo h($post['Post']['created']); ?></li>
@@ -135,64 +140,8 @@ if (!in_array($post['Post']['id'], $good_post_ids)) {
       </li>
 	</ul>
 </div> <!--	panel -->
-	  <!-- reply-modal -->
 <?php endforeach; ?>
-
-
-<!-- reply-begin -->
-<?php foreach ($reply_list as $reply):?>
-<div class="reply <?php echo $reply['Post']['parent_post_id']; ?>" id="<?php echo $reply['Post']['id']; ?>" style=" border: solid 1px; display: none;">
-  <ul>
-    <li><?php echo $this->Html->image($reply['User']['profile_photo'], array('class' => 'utweet-img img-rounded')); ?></li>
-    <li>
-<?php 
-echo $this->Html->link($reply['User']['id'], array(
-	'controller' => 'users',
-	'action' => 'detail',
-	$reply['User']['id']
-	));
-?>
-    </li>
-    <li><?php echo $reply['User']['name']; ?></li>
-    <li><?php echo $reply['Post']['body']; ?></li>
-    <li><?php echo $reply['Post']['created']; ?></li>
-    <!-- 値を渡す-begin -->
-	<div class="user-id" style="display: none;"><?php echo $reply['User']['id']; ?></div>
-	<div class="post-id" style="display: none;"><?php echo $reply['Post']['id']; ?></div>
-    <!-- 値を渡す-end -->
-    <li>
-	    <button class="btn btn-primary reply-btn" data-toggle="modal" data-target="#reply-modal">
-          返信する
-        </button>
-    </li>
-    <li>
-<?php
-if (!in_array($reply['Post']['id'], $good_post_ids)) {
-	echo $this->Html->link(__('うついね'), array(
-		'controller' => 'goods',
-		'action' => 'good',
-		$reply['Post']['id']
-		));
-} else {
-		echo $this->Html->link(__('うつくないね'), array(
-		'controller' => 'goods',
-		'action' => 'bad',
-		$reply['Post']['id']
-		));
-}
-?>
-    </li>
-    <!-- うついね件数 -->
-    <li>
-<?php echo count($reply['Good']); ?>
-    </li>
-  </ul>
-</div>
-<?php endforeach; ?>
-<!-- reply-end -->
-
-
-
+<!-- reply-modal-begin -->
     <div class="modal" role="dialog" aria-hidden="true" id="reply-modal">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -206,7 +155,7 @@ if (!in_array($reply['Post']['id'], $good_post_ids)) {
 echo $this->Form->hidden('user_id', array('value' => AuthComponent::user('id')));
 echo $this->Form->hidden('parent_post_id', array('id' => 'parent-post-id'));
 // 投稿内容
-echo $this->Form->input('body', array('type' => 'textarea', 'rows' => '1', 'maxlength' => '140', 'placeholder' => 'うつぶきましょう', 'label' => false, 'class' => 'post-form form-control'));
+echo $this->Form->input('body', array('type' => 'textarea', 'rows' => '1', 'maxlength' => '140', 'placeholder' => 'うつぶきましょう', 'label' => false, 'class' => 'post-form form-control post-body'));
 ?>
           </div>
           <div class="modal-footer">
@@ -215,6 +164,6 @@ echo $this->Form->input('body', array('type' => 'textarea', 'rows' => '1', 'maxl
         </div>
       </div>
     </div>
-
+<!-- reply-modal-end -->
   </div>
 </div>

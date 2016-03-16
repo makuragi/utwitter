@@ -57,7 +57,7 @@ class HomesController extends AppController {
 		$post_list = $this->Post->find('all', array(
 			'conditions' => array(
 				'User.id' => array_merge($follow_user_ids, array($this->Auth->User('id'))),
-				'Post.parent_post_id' => null,
+// 				'Post.parent_post_id' => null,
 				'User.delete_flag' => '0',
 				'Post.delete_flag' => '0',
 			),
@@ -75,25 +75,25 @@ class HomesController extends AppController {
 			)
 		));
 		// うつぶやき一覧(返信)を取得
-		$reply_list = $this->Post->find('all', array(
-				'conditions' => array(
-						'Post.parent_post_id !=' => null,
-						'User.delete_flag' => '0',
-						'Post.delete_flag' => '0'
-				),
-				'fields' => array(
-						'User.id',
-						'User.name',
-						'User.profile_photo',
-						'Post.id',
-						'Post.parent_post_id',
-						'Post.created',
-						'Post.body'
-				),
-				'order' => array(
-						'Post.created'
-				)
-		));
+// 		$reply_list = $this->Post->find('all', array(
+// 				'conditions' => array(
+// 						'Post.parent_post_id !=' => null,
+// 						'User.delete_flag' => '0',
+// 						'Post.delete_flag' => '0'
+// 				),
+// 				'fields' => array(
+// 						'User.id',
+// 						'User.name',
+// 						'User.profile_photo',
+// 						'Post.id',
+// 						'Post.parent_post_id',
+// 						'Post.created',
+// 						'Post.body'
+// 				),
+// 				'order' => array(
+// 						'Post.created'
+// 				)
+// 		));
 
 		$this->set('follow_user_ids', $follow_user_ids);
 		$this->set('good_post_ids', $good_post_ids);
